@@ -30,14 +30,13 @@ import { useUserStore } from '@/store/user';
 
 const userStore = useUserStore();
 const { imageUrl, user_name } = storeToRefs(userStore);
-const registerRef = ref('');
+const registerTime = ref('');
 const role = computed(() => (userStore.user_name == '一叶扁舟' ? '管理员' : '普通用户'));
 getUser({
   user_name: user_name.value,
 }).then((res) => {
-  registerRef.value = res.data.data[0].createTime;
+  registerTime.value = res.data.data;
 });
-const registerTime = computed(() => registerRef.value?.substring(0, 10));
 </script>
 
 <style scoped lang="scss">

@@ -8,7 +8,6 @@
         <el-table
           id="out-table"
           :data="tableData"
-          :default-sort="{ prop: 'createTime', order: 'ascending' }"
           max-height="500px"
           style="width: 100%"
           :border="true"
