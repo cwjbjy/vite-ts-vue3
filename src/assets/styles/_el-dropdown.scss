@@ -1,0 +1,37 @@
+//下拉菜单
+%dropdown-base{
+    font-size: 14px;
+    cursor: pointer;
+    color:$color-font;
+}
+
+%dropdown-menu{
+    border: 1px solid $color-font;
+}
+
+%dropdown-menu__item{
+    color: #303133;
+    text-align: center;
+}
+
+%dropdown-menu__item_hover{
+  // background-color: $color-bg-hover;
+  color: #303133;
+}
+
+//element的dropdown，引入的时候需放在最外面
+@mixin dropdown{
+    .el-dropdown {
+        @extend %dropdown-base;
+      }
+      .el-dropdown-menu {
+        @extend %dropdown-menu;
+      }
+      .el-dropdown-menu__item {
+        @extend %dropdown-menu__item;
+      }
+      .el-dropdown-menu__item:focus,
+      .el-dropdown-menu__item:not(.is-disabled):hover {
+        @extend %dropdown-menu__item_hover;
+      }
+}

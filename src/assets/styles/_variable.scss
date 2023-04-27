@@ -1,0 +1,59 @@
+$color-font:#FFF;
+$color-font-active:#0078dc;
+$color-gray:#999;
+
+$cursor-pointer:pointer;
+
+$background-login:#1e90ff;
+$background-form:#fff;
+
+$themes: (
+  theme-blue: (
+    color-font: #fff,
+    background-header:#0678be,
+    background-aside:#336ea9,
+    background-main:#70a1ff,
+    background-drag:#eff1f5,
+    background-fleet:rgb(6, 42, 88),
+    card-background:#fff,
+    card-border:#e9eaec,
+    card-font:#666,
+    card-background-active:#409eff,
+    card-border-active:#409eff,
+    button-primary:#409EFF,
+    icon-font:#70a1ff,
+    table-th:#d2d6de,
+  ),
+  theme-gray: (
+    color-font: #fff,
+    background-header:#2f3542,
+    background-aside:#545c64,
+    background-main:#f0f0f0,
+    background-drag:#eff1f5,
+    background-fleet:rgb(6, 42, 88),
+    button-primary:#409EFF,
+    card-background:#fff,
+    card-border:#e9eaec,
+    card-font:#666,
+    card-background-active:#409eff,
+    card-border-active:#409eff,
+    icon-font:#f0f0f0,
+    table-th:#d2d6de,
+  ),
+  theme-black: (
+    color-font: #fff,
+    background-header:#303030,
+    background-aside:#303030,
+    background-main:#393939,
+    background-drag:#303030,
+    background-fleet:#393939,
+    card-background:#303030,
+    card-border:#393939,
+    card-font:#fff,
+    card-background-active:#409eff,
+    card-border-active:#409eff,
+    button-primary:#303030,
+    icon-font:#635c5c,
+    table-th:#303030,
+  ),
+);
