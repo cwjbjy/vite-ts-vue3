@@ -60,8 +60,8 @@ const useCheckUpdate = () => {
           }
         }
       });
-      // 5秒检测一次
-    }, 5000);
+      // 60秒检测一次
+    }, 60000);
   });
 
   onBeforeUnmount(() => {

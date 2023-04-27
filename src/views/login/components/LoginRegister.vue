@@ -79,7 +79,7 @@ const handleRegister = async () => {
     if (valid) {
       if (moreClick) return;
       moreClick = true;
-      const res = verifyCode.validate(authCode);
+      const res = verifyCode.validate(authCode.value);
       if (res) {
         const params = {
           userName: ruleForm.reg_name,

@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+vue3-manage
+vue3-manage.zip
 
 # Editor directories and files
 .vscode/*
