@@ -26,7 +26,7 @@
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <a href="https://github.com/cwjbjy/management-system-vue" target="_blank">
+            <a href="https://github.com/cwjbjy/vite-ts-vue3" target="_blank">
               <el-dropdown-item>项目仓库</el-dropdown-item>
             </a>
             <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
