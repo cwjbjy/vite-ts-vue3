@@ -44,8 +44,8 @@ const useCheckUpdate = () => {
           }
         }
       });
-      // 5秒检测一次
-    }, 5000);
+      // 1h检测一次
+    }, 3600000);
   });
 
   onBeforeUnmount(() => {
