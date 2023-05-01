@@ -16,7 +16,10 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
-    // viteCompression(),
+    // {
+    //   ...viteCompression(),
+    //   apply: 'build',
+    // },
   ],
   //这里进行配置别名
   resolve: {
