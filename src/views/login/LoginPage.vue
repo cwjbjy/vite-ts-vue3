@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div v-title="title" class="login">
     <header class="top">
       <span class="title">PC端管理系统(Vue版)</span>
     </header>
@@ -34,6 +34,7 @@ import LoginOther from './components/LoginOther.vue';
 import LoginRegister from './components/LoginRegister.vue';
 
 const flag = ref(true);
+const title = ref('登录');
 const registerRef = ref<InstanceType<typeof LoginRegister> | null>(null);
 const loginRef = ref<InstanceType<typeof LoginForm> | null>(null);
 
