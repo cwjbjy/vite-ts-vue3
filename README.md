@@ -8,6 +8,6 @@
 
 npm install
 
-npm run start
+npm run dev
 
 后台服务起来后，前端即可正常访问接口
