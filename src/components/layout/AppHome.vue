@@ -9,11 +9,11 @@
         <article class="app-content">
           <app-tags @update:change="tagChange" />
           <router-view v-slot="{ Component }">
-            <transition name="fade" mode="out-in">
-              <keep-alive :include="keepList" :exclude="exList" :max="8">
+            <Transition name="fade" mode="out-in">
+              <KeepAlive :include="keepList" :exclude="exList" :max="8">
                 <component :is="Component" />
-              </keep-alive>
-            </transition>
+              </KeepAlive>
+            </Transition>
           </router-view>
         </article>
       </main>
