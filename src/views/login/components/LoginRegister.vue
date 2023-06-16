@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+import CryptoJS from 'crypto-es';
 import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
 import { onMounted, reactive, ref } from 'vue';
@@ -83,7 +84,7 @@ const handleRegister = async () => {
       if (res) {
         const params = {
           userName: ruleForm.reg_name,
-          passWord: ruleForm.rge_pass,
+          passWord: CryptoJS.MD5(ruleForm.rge_pass).toString(),
           authority: 2,
           createTime: getTime(),
           photo: 'userlogo.png',

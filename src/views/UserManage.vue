@@ -62,6 +62,7 @@
 </template>
 
 <script setup lang="ts">
+import CryptoJS from 'crypto-es';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { reactive, ref, inject, onActivated } from 'vue';
 
@@ -119,7 +120,7 @@ const changeUser = () => {
   let params = {
     id: (row as RowItem).id,
     user_name: form.name,
-    password: form.pass,
+    password: CryptoJS.MD5(form.pass).toString(),
   };
   updateUser(params).then(() => {
     ElMessage({

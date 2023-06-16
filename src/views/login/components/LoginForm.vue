@@ -21,6 +21,7 @@
 </template>
 
 <script setup lang="ts">
+import CryptoJS from 'crypto-es';
 import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
 import { reactive, ref } from 'vue';
@@ -49,7 +50,7 @@ const handleLogin = () => {
       moreClick = true;
       let fd = new URLSearchParams();
       fd.append('userName', ruleForm.name);
-      fd.append('passWord', ruleForm.pass);
+      fd.append('passWord', CryptoJS.MD5(ruleForm.pass).toString());
       login(fd)
         .then((res) => {
           localStorage.setItem('authMenus', res.data.data.auth);
