@@ -34,6 +34,7 @@ declare module '@vue/runtime-core' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElUpload: typeof import('element-plus/es')['ElUpload']
     FleetModel: typeof import('./src/components/FleetModel.vue')['default']
     LineModel: typeof import('./src/components/echartsModel/LineModel.vue')['default']
     MenusItem: typeof import('./src/components/menus/MenusItem.vue')['default']

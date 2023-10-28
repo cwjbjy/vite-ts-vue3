@@ -1,5 +1,4 @@
 <template>
-  <!-- 适配所有级别菜单 || 一级二级三级等等... -->
   <nav>
     <el-menu
       :default-active="$route.path"
@@ -11,6 +10,7 @@
       router
       @select="handleSelect"
     >
+      <!-- 适配所有级别菜单 || 递归组件 -->
       <MenusItem :list="newMenus"></MenusItem>
     </el-menu>
   </nav>

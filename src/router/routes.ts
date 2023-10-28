@@ -6,9 +6,9 @@ const AppHome = () => import('@/components/layout/AppHome.vue');
 
 const HomePage = () => import('@/views/homePage/HomePage.vue');
 
-const FleetLine = () => import('@/views/FleetLine.vue');
+const FleetLine = () => import('@/views/fleetLine/FleetLine.vue');
 
-const BaseEcharts = () => import('@/views/BaseEcharts.vue');
+const BaseEcharts = () => import('@/views/baseEcharts/BaseEcharts.vue');
 
 const Magnifying = () => import('@/views/Magnifying.vue');
 

@@ -19,7 +19,7 @@ const router = useRouter();
 const route = useRoute();
 const userStore = useUserStore();
 const { user_name } = storeToRefs(userStore);
-useCheckUpdate();
+useCheckUpdate(); //检测版本更新的hook
 watch(route, async (newVal) => {
   if (user_name.value === '一叶扁舟') {
     /* 在4.x版本中需手动调用router.replace方法重定向，
