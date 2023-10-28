@@ -5,7 +5,7 @@ import i18n from './views/I18n';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import App from './App.vue';
 import myDirective from './directive';
-import './utils/eventBus';
+import './utils/observer';
 import 'element-plus/dist/index.css';
 import './assets/icon/iconfont.css';
 

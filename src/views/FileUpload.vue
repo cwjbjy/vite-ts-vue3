@@ -26,7 +26,7 @@
 import { ElMessage } from 'element-plus';
 import { reactive, inject } from 'vue';
 
-import { bus } from '@/settings';
+import { BUS_IMG } from '@/settings/eventBus';
 import { useUserStore } from '@/store/user';
 
 const baseURL = inject('baseURL');
@@ -40,7 +40,7 @@ const onSuccess = (response: { msg: string }) => {
     message: response.msg,
   });
   //更换头部图片
-  window.eventBus.$emit(bus.updateImg);
+  window.eventBus.emit(BUS_IMG);
 };
 
 const beforeAvatarUpload = (file: File) => {

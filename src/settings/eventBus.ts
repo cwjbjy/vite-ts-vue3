@@ -1,11 +1,10 @@
-/**防止事件总线命名重名，将事件名都定义在一个js文件中 */
-export const bus = {
-  /** 上传图片事件 */
-  updateImg: 'update:img',
+/**事件总线命名重名 */
 
-  /**路由跳转 */
-  updateRouter: 'update:router',
+/** 上传图片事件 */
+export const BUS_IMG = 'bus:img';
 
-  /**websocket通信 */
-  updateWs: 'page1',
-};
+/**路由跳转 */
+export const BUS_ROUTER = 'bus:router';
+
+/**websocket通信 */
+export const BUS_WS = 'bus_ws';

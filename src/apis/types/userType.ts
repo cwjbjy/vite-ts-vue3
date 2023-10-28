@@ -1,3 +1,4 @@
+/* 接口请求参数类型 */
 export interface LoginParams {
   userName: string;
   passWord: string;
@@ -24,5 +25,3 @@ export interface UpdateUserParams extends UserIdParams, UserNameParams {
 export interface TrackParams {
   data: string;
 }
-
-export type { RowItem, UsersModel } from '../model/userModel';

@@ -35,7 +35,7 @@ const role = computed(() => (userStore.user_name == '一叶扁舟' ? '管理员'
 getUser({
   user_name: user_name.value,
 }).then((res) => {
-  registerTime.value = res.data.data;
+  registerTime.value = res.data;
 });
 </script>
 

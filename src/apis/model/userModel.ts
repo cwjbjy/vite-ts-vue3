@@ -1,3 +1,5 @@
+/* 接口返回值类型*/
+
 export interface RowItem {
   admin: null;
   authority: string;
@@ -6,9 +8,4 @@ export interface RowItem {
   password: string;
   photo: string;
   user_name: string;
-}
-
-export interface UsersModel {
-  code: number;
-  data: RowItem[];
 }

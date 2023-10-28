@@ -81,7 +81,7 @@ const rules = reactive({
 
 const init = () => {
   user().then((res) => {
-    tableData.value = res.data.data;
+    tableData.value = res.data;
   });
 };
 

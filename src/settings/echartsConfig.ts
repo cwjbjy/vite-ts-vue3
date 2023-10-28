@@ -1,3 +1,5 @@
+//echarts基本配置
+
 export function title({ text, color }: { text: string; color: string }) {
   return {
     text,

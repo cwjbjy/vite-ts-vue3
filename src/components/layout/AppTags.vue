@@ -34,7 +34,7 @@
 import { ref, computed, watch } from 'vue';
 import { useRouter, useRoute, RouteLocationNormalizedLoaded } from 'vue-router';
 import type { RouteInfo } from '#/config';
-import { bus } from '@/settings';
+import { BUS_ROUTER } from '@/settings/eventBus';
 const emit = defineEmits(['update:change']);
 const router = useRouter();
 const route = useRoute();
@@ -87,7 +87,7 @@ function handleTags(command: string) {
 }
 function routerClick(value: string) {
   router.push(value);
-  window.eventBus.$emit(bus.updateRouter, value);
+  window.eventBus.emit(BUS_ROUTER, value);
 }
 
 watch(

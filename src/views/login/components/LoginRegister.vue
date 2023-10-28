@@ -36,7 +36,7 @@ import type { FormInstance, FormRules } from 'element-plus';
 import { onMounted, reactive, ref } from 'vue';
 
 import { register } from '@/apis/user';
-import { getTime } from '@/utils/comFunc';
+import { getTime, randomName } from '@/utils/share';
 import { isValidPass } from '@/utils/rules';
 const emit = defineEmits(['update:register']);
 let verifyCode: any = null;
@@ -44,7 +44,7 @@ let moreClick = false;
 const ruleFormRef = ref<FormInstance>();
 const authCode = ref('');
 const ruleForm = reactive({
-  reg_name: '',
+  reg_name: randomName('游客'),
   verification: '',
   rge_pass: '',
   rge_passAgain: '',
@@ -92,7 +92,7 @@ const handleRegister = async () => {
         register(params)
           .then((res) => {
             ElMessage({
-              message: res.data.msg,
+              message: res.msg,
               type: 'success',
             });
 

@@ -8,7 +8,7 @@ import { onMounted, ref, watch } from 'vue';
 
 import useResize from '@/hooks/useResize';
 import { useThemeStore } from '@/store/themeColor';
-import * as base from '@/utils/echartsBase';
+import * as base from '@/settings/echartsConfig';
 
 const echartRef = ref<HTMLDivElement | null>(null);
 const themeStore = useThemeStore();

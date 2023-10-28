@@ -1,4 +1,4 @@
-import { getAssetsFile } from '@/utils/comFunc';
+import { getAssetsFile } from '@/utils/share';
 
 export const menus = [
   {

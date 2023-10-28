@@ -41,7 +41,8 @@ import { computed, onBeforeUnmount, onMounted, inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 import { getImage } from '@/apis/user';
-import { echartColor, bus } from '@/settings';
+import { echartColor } from '@/settings';
+import { BUS_IMG } from '@/settings/eventBus';
 import type { EchartColorKey } from '@/settings/echartColor';
 import { useThemeStore } from '@/store/themeColor';
 import { useUserStore } from '@/store/user';
@@ -58,8 +59,8 @@ const active = (color: string) => (themeStore.theme === color ? 'dropdownActive'
 const getPortrait = () => {
   getImage({
     user_name: user_name.value,
-  }).then((res) => {
-    let fileName = res.data.data[0].photo;
+  }).then((res: any) => {
+    let fileName = res.data[0].photo;
     userStore.updateImageUrl(`${imageURL}/${fileName}`);
   });
 };
@@ -80,12 +81,12 @@ const switchColor = (command: EchartColorKey) => {
 
 getPortrait();
 onMounted(() => {
-  window.eventBus.$on(bus.updateImg, () => {
+  window.eventBus.on(BUS_IMG, () => {
     getPortrait();
   });
 });
 onBeforeUnmount(() => {
-  window.eventBus.$off(bus.updateImg);
+  window.eventBus.off(BUS_IMG);
 });
 </script>
 

@@ -29,6 +29,7 @@ import { useRouter } from 'vue-router';
 
 import { login } from '@/apis/user';
 import { useUserStore } from '@/store/user';
+
 const userStore = useUserStore();
 const router = useRouter();
 const formRef = ref<FormInstance>();
@@ -48,13 +49,13 @@ const handleLogin = () => {
     if (valid) {
       if (moreClick) return;
       moreClick = true;
-      let fd = new URLSearchParams();
-      fd.append('userName', ruleForm.name);
-      fd.append('passWord', CryptoJS.MD5(ruleForm.pass).toString());
-      login(fd)
+      login({
+        userName: ruleForm.name,
+        passWord: CryptoJS.MD5(ruleForm.pass).toString(),
+      })
         .then((res) => {
-          localStorage.setItem('authMenus', res.data.data.auth);
-          localStorage.setItem('token', res.data.data.token);
+          localStorage.setItem('authMenus', res.data.auth);
+          localStorage.setItem('token', res.data.token);
           userStore.updateUserName(ruleForm.name);
           localStorage.setItem('user_name', ruleForm.name);
           router.push('/firstItem');

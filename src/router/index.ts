@@ -5,7 +5,7 @@ import 'nprogress/nprogress.css'; //
 import routes from './routes';
 
 import { trackWeb } from '@/apis/user';
-import { getTime } from '@/utils/comFunc';
+import { getTime } from '@/utils/share';
 
 const router = createRouter({
   history: createWebHistory(), //可传参数，配置base路径，例如'/app'

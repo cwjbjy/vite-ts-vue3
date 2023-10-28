@@ -21,7 +21,8 @@ import { reactive, onMounted, onBeforeUnmount, computed, ref } from 'vue';
 
 import MenusItem from './MenusItem.vue';
 
-import { bus, menus, echartColor } from '@/settings';
+import { menus, echartColor } from '@/settings';
+import { BUS_ROUTER } from '@/settings/eventBus';
 import { useThemeStore } from '@/store/themeColor';
 
 import type { MenuItem } from '@/settings/menus';
@@ -52,13 +53,13 @@ const handleSelect = (index: string) => {
 };
 
 onMounted(() => {
-  window.eventBus.$on(bus.updateRouter, (value: string) => {
+  window.eventBus.on(BUS_ROUTER, (value: string) => {
     state.defaultActive = value;
   });
 });
 
 onBeforeUnmount(() => {
-  window.eventBus.$off(bus.updateRouter);
+  window.eventBus.off(BUS_ROUTER);
 });
 </script>
 

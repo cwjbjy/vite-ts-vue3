@@ -1,4 +1,4 @@
-import { bus } from '@/settings';
+import { BUS_WS } from '@/settings/eventBus';
 
 interface User {
   type: string;
@@ -82,7 +82,7 @@ export default class WebsocketClass {
         if (data.name === 'heart') {
           // console.log(data.text);
         } else {
-          window.eventBus.$emit(bus.updateWs, data);
+          window.eventBus.emit(BUS_WS, data);
         }
         that.heartCheck.reSet();
       };

@@ -65,7 +65,7 @@ import { ElMessage } from 'element-plus';
 import { storeToRefs } from 'pinia';
 import { ref, onActivated, nextTick, onDeactivated } from 'vue';
 
-import { bus } from '@/settings';
+import { BUS_WS } from '@/settings/eventBus';
 import insService from '@/utils/ws';
 import { useUserStore } from '@/store/user';
 import type { ChatInfo } from '#/config';
@@ -131,7 +131,7 @@ const keyDown = (e: KeyboardEvent) => {
 
 onActivated(() => {
   document.addEventListener('keydown', keyDown);
-  window.eventBus.$on(bus.updateWs, async (value: ChatInfo) => {
+  window.eventBus.on(BUS_WS, async (value: ChatInfo) => {
     historyInfos.value.push(value);
     await nextTick();
     if (infoListContent.value) infoListContent.value.scrollTop = 9999999;
@@ -139,7 +139,7 @@ onActivated(() => {
 });
 
 onDeactivated(() => {
-  window.eventBus.$off(bus.updateWs);
+  window.eventBus.off(BUS_WS);
   document.removeEventListener('keydown', keyDown);
 });
 </script>
