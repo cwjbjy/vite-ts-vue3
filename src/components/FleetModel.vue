@@ -5,17 +5,11 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { onBeforeUnmount, ref, watch, onMounted } from 'vue';
-import type { PropType } from 'vue';
 import { useThemeStore } from '@/store/themeColor';
 
 import type { AirLine, Item } from '@/settings/airLine';
 
-const props = defineProps({
-  model: {
-    type: Object as PropType<AirLine>,
-    default: () => ({}),
-  },
-});
+const props = defineProps<{ model: AirLine }>();
 
 const themeStore = useThemeStore();
 const { echartColor, fleetBg } = storeToRefs(themeStore);

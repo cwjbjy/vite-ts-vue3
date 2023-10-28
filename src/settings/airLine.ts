@@ -197,4 +197,9 @@ export interface AirLine {
   apiData: Item[];
 }
 
+export interface User {
+  name?: string;
+  age: number;
+}
+
 export default data;

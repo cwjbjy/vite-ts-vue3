@@ -17,14 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue';
 import type { MenuItem } from '@/settings/menus';
-defineProps({
-  list: {
-    type: Array as PropType<MenuItem[]>,
-    default: () => [],
-  },
-});
+defineProps<{ list: MenuItem[] }>();
 </script>
 
 <style scoped>
