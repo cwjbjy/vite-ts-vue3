@@ -19,7 +19,7 @@
       </article>
     </main>
     <footer class="footer">
-      个人小样项目，用于展示自己的技术栈
+      <a href="https://github.com/cwjbjy/vite-ts-vue3" target="_blank">项目仓库</a>
       <br />
       <span style="cursor: pointer" @click="thirdParty">苏ICP备20022574号-2</span>
     </footer>

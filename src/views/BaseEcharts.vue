@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import.meta.glob('@/components/BaseEchartsModel/*.vue');
+import.meta.glob('@/components/echartsModel/*.vue');
 </script>
 
 <style scoped>
