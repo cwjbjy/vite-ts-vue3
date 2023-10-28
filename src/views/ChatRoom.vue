@@ -66,7 +66,7 @@ import { storeToRefs } from 'pinia';
 import { ref, onActivated, nextTick, onDeactivated } from 'vue';
 
 import { BUS_WS } from '@/settings/eventBus';
-import insService from '@/utils/ws';
+import insService from '@/utils/chat';
 import { useUserStore } from '@/store/user';
 import type { ChatInfo } from '#/config';
 
@@ -89,7 +89,7 @@ const connect = () => {
     name: user_name.value,
     image: imageUrl.value,
   };
-  insService.joinMeeting({
+  insService.open({
     params: user,
     closeCallBack,
   });
@@ -223,3 +223,4 @@ img {
   border-radius: 0;
 }
 </style>
+@/utils/ws/chat
