@@ -8,6 +8,15 @@ import myDirective from './directive';
 import './utils/observer';
 import 'element-plus/dist/index.css';
 import './assets/icon/iconfont.css';
+import { init } from 'cwj_monitoring';
+
+//自己的npm包，数据埋点
+init({
+  url: `${import.meta.env.VITE_APP_BASEURL}/track`,
+  data: {
+    vs: 'vue3-manage',
+  },
+});
 
 const app = createApp(App);
 

@@ -7,6 +7,7 @@ declare interface Window {
   GVerify: any;
   go: any;
   eventBus: any;
+  $track: any;
 }
 declare module '*.vue' {
   import { DefineComponent } from 'vue';

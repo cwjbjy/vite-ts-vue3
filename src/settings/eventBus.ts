@@ -7,4 +7,4 @@ export const BUS_IMG = 'bus:img';
 export const BUS_ROUTER = 'bus:router';
 
 /**websocket通信 */
-export const BUS_WS = 'bus_ws';
+export const BUS_WS = 'bus:ws';
