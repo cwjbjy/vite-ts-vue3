@@ -1,4 +1,7 @@
 import qs from 'qs';
+import { TOKEN } from '@/settings/localStorage';
+import { CODE_TOKEN_EXPIRED } from '@/settings/code';
+import { LOGIN } from '@/settings/routerMap';
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
@@ -19,7 +22,7 @@ class FetchClient {
     let data = '';
 
     //增加token
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem(TOKEN);
     const headers = Object.assign(
       {},
       {
@@ -68,6 +71,12 @@ class FetchClient {
           return resolve({
             status: 'ok',
           });
+        }
+      } else {
+        const { status } = res;
+        /* token过期，重定向到首页 */
+        if ([CODE_TOKEN_EXPIRED].includes(status)) {
+          window.location.href = LOGIN;
         }
       }
       console.error('网络错误，请稍后重试');

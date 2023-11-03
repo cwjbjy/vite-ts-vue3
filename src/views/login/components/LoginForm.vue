@@ -30,6 +30,9 @@ import { useRouter } from 'vue-router';
 import { login } from '@/apis/user';
 import { useUserStore } from '@/store/user';
 
+import { TOKEN, MENUS, USER_NAME } from '@/settings/localStorage';
+import { FIRSTITEM } from '@/settings/routerMap';
+
 const userStore = useUserStore();
 const router = useRouter();
 const formRef = ref<FormInstance>();
@@ -54,11 +57,11 @@ const handleLogin = () => {
         passWord: CryptoJS.MD5(ruleForm.pass).toString(),
       })
         .then((res) => {
-          localStorage.setItem('authMenus', res.data.auth);
-          localStorage.setItem('token', res.data.token);
+          localStorage.setItem(MENUS, res.data.auth);
+          localStorage.setItem(TOKEN, res.data.token);
+          localStorage.setItem(USER_NAME, ruleForm.name);
           userStore.updateUserName(ruleForm.name);
-          localStorage.setItem('user_name', ruleForm.name);
-          router.push('/firstItem');
+          router.push(FIRSTITEM);
         })
         .catch((err) => {
           if (err.response.status === 400) {

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { USER_NAME } from '@/settings/localStorage';
 
 // 第一个参数是id，id必填，且需要保证值唯一
 export const useUserStore = defineStore('user', {
@@ -10,7 +11,7 @@ export const useUserStore = defineStore('user', {
     };
   },
   getters: {
-    user_name: (state) => (state.userName === '' ? localStorage.getItem('user_name') || '' : state.userName),
+    user_name: (state) => (state.userName === '' ? localStorage.getItem(USER_NAME) || '' : state.userName),
   },
   actions: {
     updateUserName(userName: string) {

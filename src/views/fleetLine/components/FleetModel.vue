@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia';
 import { onBeforeUnmount, ref, watch, onMounted } from 'vue';
 import { useThemeStore } from '@/store/themeColor';
 
-import type { AirLine, Item } from '@/settings/airLine';
+import type { AirLine, Item } from '../airLine';
 
 const props = defineProps<{ model: AirLine }>();
 

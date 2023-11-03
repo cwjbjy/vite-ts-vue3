@@ -1,11 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import NProgress from 'nprogress';
 import Bowser from 'bowser';
-import 'nprogress/nprogress.css'; //
+import 'nprogress/nprogress.css';
 import routes from './routes';
 
 import { trackWeb } from '@/apis/user';
 import { getTime } from '@/utils/share';
+
+import { TOKEN, MENUS, USER_NAME } from '@/settings/localStorage';
+import { LOGIN } from '@/settings/routerMap';
 
 const router = createRouter({
   history: createWebHistory(), //可传参数，配置base路径，例如'/app'
@@ -18,16 +21,16 @@ const bowser = Bowser.getParser(window.navigator.userAgent).getBrowserName();
 
 router.beforeEach((to, from) => {
   NProgress.start();
-  if (to.path === '/login') {
-    localStorage.removeItem('token');
-    localStorage.removeItem('authMenus');
-    localStorage.removeItem('user_name');
+  if (to.path === LOGIN) {
+    localStorage.removeItem(TOKEN);
+    localStorage.removeItem(MENUS);
+    localStorage.removeItem(USER_NAME);
   }
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem(TOKEN);
 
-  if (!token && to.path !== '/login') {
-    return '/login';
+  if (!token && to.path !== LOGIN) {
+    return LOGIN;
   }
 
   //埋点，后续完善

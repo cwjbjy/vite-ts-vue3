@@ -21,17 +21,20 @@ import { reactive, onMounted, onBeforeUnmount, computed, ref } from 'vue';
 
 import MenusItem from './MenusItem.vue';
 
-import { menus, echartColor } from '@/settings';
+import { menus } from './menus';
 import { BUS_ROUTER } from '@/settings/eventBus';
+import { echartColor } from '@/settings/echartColor';
+import { MENUS } from '@/settings/localStorage';
+import { FIRSTITEM } from '@/settings/routerMap';
 import { useThemeStore } from '@/store/themeColor';
 
-import type { MenuItem } from '@/settings/menus';
-import { EchartColorKey } from '@/settings/echartColor';
+import type { MenuItem } from './menus';
+import type { EchartColorKey } from '@/settings/echartColor';
 
 const themeStore = useThemeStore();
 
 const state = reactive({
-  defaultActive: '/firstItem',
+  defaultActive: FIRSTITEM,
   textColor: '#fff',
   activeTextColor: '#ffd04b',
 });
@@ -40,7 +43,7 @@ const newMenus = ref<MenuItem[]>([]);
 
 const bgColor = computed(() => echartColor[themeStore.theme as EchartColorKey].menuBg);
 
-const authMenus = localStorage.getItem('authMenus');
+const authMenus = localStorage.getItem(MENUS);
 
 menus.forEach((item: any) => {
   if (item.key && authMenus && authMenus.includes(item.key)) {

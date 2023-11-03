@@ -13,21 +13,28 @@ import { useRouter, useRoute } from 'vue-router';
 import useCheckUpdate from '@/hooks/useCheckUpdate';
 import { manage } from '@/router/routes';
 import { useUserStore } from '@/store/user';
-provide('baseURL', import.meta.env.VITE_APP_BASEURL);
-provide('imageURL', import.meta.env.VITE_APP_IMAGE);
+import { BASR_URL, IMAGE_URL } from '@/settings/global';
+import { MANAGE, NAME_HOME } from '@/settings/routerMap';
+import { MANAGE_NAME } from '@/settings/user';
+
+provide(BASR_URL, import.meta.env.VITE_APP_BASEURL);
+provide(IMAGE_URL, import.meta.env.VITE_APP_IMAGE);
+
 const router = useRouter();
 const route = useRoute();
 const userStore = useUserStore();
 const { user_name } = storeToRefs(userStore);
+
 useCheckUpdate(); //检测版本更新的hook
+
 watch(route, async (newVal) => {
-  if (user_name.value === '一叶扁舟') {
+  if (user_name.value === MANAGE_NAME) {
     /* 在4.x版本中需手动调用router.replace方法重定向，
           因为动态路由页面刷新时，matched的值为空；
           在3.x版本中，刷新页面添加异步路由，matched有值，不需要再重定向 */
-    router.addRoute('Home', manage);
-    if (newVal.fullPath === '/manage') {
-      await router.replace('/manage');
+    router.addRoute(NAME_HOME, manage);
+    if (newVal.fullPath === MANAGE) {
+      await router.replace(MANAGE);
     }
   }
 });

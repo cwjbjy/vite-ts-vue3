@@ -19,7 +19,7 @@
       </article>
     </main>
     <footer class="footer">
-      <a href="https://github.com/cwjbjy/vite-ts-vue3" target="_blank">项目仓库</a>
+      <a :href="GITHUB" target="_blank">项目仓库</a>
       <br />
       <span style="cursor: pointer" @click="thirdParty">苏ICP备20022574号-2</span>
     </footer>
@@ -28,6 +28,8 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue';
+
+import { GITHUB, BEI_AN } from '@/settings/user';
 
 import LoginForm from './components/LoginForm.vue';
 import LoginOther from './components/LoginOther.vue';
@@ -50,7 +52,7 @@ const keyDown = (e: KeyboardEvent) => {
 };
 
 const thirdParty = () => {
-  window.open('https://beian.miit.gov.cn');
+  window.open(BEI_AN);
 };
 
 const register = ({ name, pass }: { name: string; pass: string }) => {

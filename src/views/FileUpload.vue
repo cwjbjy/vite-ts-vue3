@@ -28,10 +28,12 @@ import { reactive, inject } from 'vue';
 
 import { BUS_IMG } from '@/settings/eventBus';
 import { useUserStore } from '@/store/user';
+import { TOKEN } from '@/settings/localStorage';
+import { BASR_URL } from '@/settings/global';
 
-const baseURL = inject('baseURL');
+const baseURL = inject(BASR_URL);
 const userStore = useUserStore();
-const headers = reactive({ authorization: 'Bearer ' + localStorage.getItem('token') });
+const headers = reactive({ authorization: 'Bearer ' + localStorage.getItem(TOKEN) });
 const user = reactive({ user_name: userStore.user_name });
 
 const onSuccess = (response: { msg: string }) => {

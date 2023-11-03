@@ -8,7 +8,7 @@
         <div class="user-name">{{ user_name }}</div>
       </el-col>
     </el-row>
-    <el-row class="user-bottom">
+    <div class="user-bottom">
       <div class="user-info-list">
         <span>注册时间：</span>
         <span>{{ registerTime }}</span>
@@ -17,7 +17,7 @@
         <span>权限等级：</span>
         <span>{{ role }}</span>
       </div>
-    </el-row>
+    </div>
   </el-card>
 </template>
 

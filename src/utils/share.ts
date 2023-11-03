@@ -101,3 +101,19 @@ export const randomName = (prefix = '', randomLength = 7) => {
   // 将随机生成的名字返回
   return name;
 };
+
+//索引
+export const isValidKey = function <T extends object, K extends keyof T>(obj: T, key: K) {
+  return obj[key];
+};
+
+//防抖
+export const debounce = (handler: () => void, time: number) => {
+  let timer: NodeJS.Timer;
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      handler.call(this);
+    }, time);
+  };
+};

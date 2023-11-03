@@ -33,7 +33,7 @@ import SideMenu from '../menus/SideMenu.vue';
 import type { RouteInfo } from '#/config';
 const theme = ref('gray');
 const keepList = ref<string[]>([]);
-const exList = ref(['HomePage', 'FleetLine', 'BaseEcharts']);
+const exList = ref(['HomePage', 'FleetLine']);
 
 const themeClass = computed(() => `theme-${theme.value}`);
 

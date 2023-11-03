@@ -1,3 +1,5 @@
+import * as path from '@/settings/routerMap';
+
 const LoginPage = () => import('@/views/login/LoginPage.vue');
 
 const NotFound = () => import('@/views/NotFound.vue');
@@ -33,98 +35,98 @@ const FoldChart = () => import('@/views/flowChart/FoldChart.vue');
 const routes = [
   {
     path: '/',
-    redirect: '/firstItem',
+    redirect: path.FIRSTITEM,
   },
   {
-    path: '/login',
-    name: 'LoginPage',
+    path: path.LOGIN,
+    name: path.NAME_LOGIN_PAGE,
     component: LoginPage,
   },
   {
-    path: '/home',
+    path: path.HOME,
     component: AppHome,
-    name: 'Home',
-    redirect: '/firstItem',
+    name: path.NAME_HOME,
+    redirect: path.FIRSTITEM,
     children: [
       {
-        path: '/firstItem',
+        path: path.FIRSTITEM,
         meta: {
           title: '系统首页',
         },
         component: HomePage,
       },
       {
-        path: '/fleet',
+        path: path.FLEET,
         meta: {
           title: '模拟航线',
         },
         component: FleetLine,
       },
       {
-        path: '/fileUp',
+        path: path.FILUP,
         meta: {
           title: '图片上传',
         },
         component: FileUp,
       },
       {
-        path: '/pdf',
+        path: path.PDF,
         meta: {
           title: '文件预览',
         },
         component: PDFPreview,
       },
       {
-        path: '/baseEcharts',
+        path: path.BASE_TABLE,
         meta: {
           title: '基础图表',
         },
         component: BaseEcharts,
       },
       {
-        path: '/commonChart',
+        path: path.COMMON_CHART,
         meta: {
           title: '一般流程图',
         },
         component: CommonChart,
       },
       {
-        path: '/foldChart',
+        path: path.FLOD_CHART,
         meta: {
           title: '折叠流程图',
         },
         component: FoldChart,
       },
       {
-        path: '/dragDialog',
+        path: path.DRAG_DIALOG,
         meta: {
           title: '拖拽弹框',
         },
         component: DragDialog,
       },
       {
-        path: '/dragList',
+        path: path.DRAG_LIST,
         meta: {
           title: '拖拽列表',
         },
         component: DragList,
       },
       {
-        path: '/I18n',
+        path: path.I18N,
         meta: {
           title: '语言转换',
         },
         component: I18n,
       },
       {
-        path: '/magnifying',
+        path: path.MAGNIFYING,
         meta: {
           title: '放大镜',
         },
         component: Magnifying,
       },
       {
-        path: '/chatRoom',
+        path: path.CHARTROOM,
         meta: {
           title: '聊天室',
         },
@@ -140,7 +142,7 @@ const routes = [
 ];
 
 export const manage = {
-  path: '/manage',
+  path: path.MANAGE,
   meta: {
     title: '后台管理',
   },

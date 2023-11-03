@@ -23,6 +23,6 @@ const dialogFormVisible = ref(false);
 }
 .pdf {
   width: 100%;
-  height: calc(100vh - 170px - 2vh);
+  height: calc(98vh - 170px);
 }
 </style>

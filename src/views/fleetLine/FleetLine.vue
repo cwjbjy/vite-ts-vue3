@@ -9,7 +9,7 @@ import { reactive } from 'vue';
 
 import FleetModel from './components/FleetModel.vue';
 
-import AirData from '@/settings/airLine';
+import AirData from './airLine';
 
 const state = reactive(AirData);
 </script>

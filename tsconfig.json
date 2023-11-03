@@ -15,6 +15,7 @@
     "noFallthroughCasesInSwitch": true, //确保switch语句中的任何非空情况都包含
     "esModuleInterop": true, // 允许使用 import 引入使用 export = 导出的内容
     // "allowJs": true, //允许使用js
+    "noImplicitThis": false,
     "baseUrl": ".", //查询的基础路径
     "paths": { "@/*": ["src/*"], "#/*": ["types/*"] } //路径映射,配合别名使用
   },

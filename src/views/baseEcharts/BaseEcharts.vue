@@ -40,7 +40,12 @@
 </template>
 
 <script setup lang="ts">
-import.meta.glob('./components/*.vue');
+import BarModel from './components/BarModel.vue';
+import PieModel from './components/PieModel.vue';
+import ScatterModel from './components/ScatterModel.vue';
+import PictorialBarModel from './components/PictorialBarModel.vue';
+import LineModel from './components/LineModel.vue';
+import CylinderModel from './components/CylinderModel.vue';
 </script>
 
 <style scoped>

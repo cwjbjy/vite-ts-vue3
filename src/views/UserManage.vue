@@ -1,9 +1,7 @@
 <template>
   <section>
     <el-card shadow="hover">
-      <strong
-        >管理员登录方可看到后台管理页面；该基础表格包含排序，筛选，编辑功能；表格中注册时间旁按钮为排序，筛选功能；上述功能均已实现</strong
-      >
+      <strong>管理员登录方可看到后台管理页面</strong>
       <div class="frontArea">
         <el-table
           id="out-table"
@@ -68,8 +66,9 @@ import { reactive, ref, inject, onActivated } from 'vue';
 
 import { user, deleteUser, updateUser } from '@/apis/user';
 import { RowItem } from '@/apis/model/userModel';
+import { IMAGE_URL } from '@/settings/global';
 
-const imageURL = inject('imageURL');
+const imageURL = inject(IMAGE_URL);
 const ruleForm = ref(null);
 let tableData = ref<RowItem[]>([]);
 const dialogFormVisible = ref(false);

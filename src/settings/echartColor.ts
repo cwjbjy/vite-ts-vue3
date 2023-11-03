@@ -1,3 +1,5 @@
+/* echarts颜色配置 */
+
 export const echartColor = {
   gray: {
     font: '#333',
