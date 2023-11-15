@@ -61,14 +61,17 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from 'element-plus';
-import { storeToRefs } from 'pinia';
 import { ref, onActivated, nextTick, onDeactivated } from 'vue';
 
-import { BUS_WS } from '@/settings/eventBus';
+import { ElMessage } from 'element-plus';
+import { storeToRefs } from 'pinia';
+
 import insService from '@/utils/chat';
-import { useUserStore } from '@/store/user';
+
 import type { ChatInfo } from '#/config';
+
+import { BUS_WS } from '@/settings/eventBus';
+import { useUserStore } from '@/store/user';
 
 const userStore = useUserStore();
 const { user_name, imageUrl } = storeToRefs(userStore);

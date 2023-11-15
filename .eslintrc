@@ -20,7 +20,8 @@
       "jsx": true
     }
   },
-  "plugins": ["vue", "@typescript-eslint", "prettier"],
+  "ignorePatterns": ["dist", "node_modules", ".eslintrc"],
+  "plugins": ["vue", "@typescript-eslint", "prettier", "import"],
   "rules": {
     "vue/multi-word-component-names": "off", // 禁用vue文件强制多个单词命名
     "@typescript-eslint/no-explicit-any": ["off"], //允许使用any
@@ -39,6 +40,36 @@
         "allow": ["warn", "error"]
       }
     ],
-    "no-debugger": "warn" //提交时不允许有debugger
+    "no-debugger": "warn", //提交时不允许有debugger
+    "import/order": [
+      //制定import排序规则
+      "error",
+      {
+        "groups": ["builtin", "external", "internal", ["parent", "sibling", "index"], "object", "type"],
+        "pathGroups": [
+          {
+            "pattern": "vue*",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "@/utils/**",
+            "group": "parent",
+            "position": "before"
+          },
+          {
+            "pattern": "@/apis/**",
+            "group": "parent",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   }
 }

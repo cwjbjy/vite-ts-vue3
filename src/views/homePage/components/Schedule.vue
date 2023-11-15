@@ -47,9 +47,10 @@
 </template>
 
 <script setup lang="ts">
+import { reactive } from 'vue';
+
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { storeToRefs } from 'pinia';
-import { reactive } from 'vue';
 
 import { useTodoList } from '@/store/todoList';
 const todoListStore = useTodoList();

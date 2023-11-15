@@ -1,4 +1,5 @@
 import { getAssetsFile } from '@/utils/share';
+
 import * as path from '@/settings/routerMap';
 
 export interface MenuItem {

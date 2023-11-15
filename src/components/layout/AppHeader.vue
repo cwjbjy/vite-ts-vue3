@@ -39,14 +39,17 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { GITHUB } from '@/settings/user';
+
 import { getImage } from '@/apis/user';
+
+import type { EchartColorKey } from '@/settings/echartColor';
+
 import { echartColor } from '@/settings/echartColor';
 import { BUS_IMG } from '@/settings/eventBus';
-import type { EchartColorKey } from '@/settings/echartColor';
+import { IMAGE_URL } from '@/settings/global';
+import { GITHUB } from '@/settings/user';
 import { useThemeStore } from '@/store/themeColor';
 import { useUserStore } from '@/store/user';
-import { IMAGE_URL } from '@/settings/global';
 
 const imageURL = inject(IMAGE_URL);
 const userStore = useUserStore();

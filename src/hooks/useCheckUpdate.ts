@@ -1,4 +1,5 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
+
 import { ElNotification } from 'element-plus';
 
 const useCheckUpdate = () => {

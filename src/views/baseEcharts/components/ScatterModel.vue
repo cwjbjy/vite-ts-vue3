@@ -5,10 +5,12 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
+
 import { storeToRefs } from 'pinia';
+
 import useResize from '@/hooks/useResize';
-import { useThemeStore } from '@/store/themeColor';
 import * as base from '@/settings/echartsConfig';
+import { useThemeStore } from '@/store/themeColor';
 const echartRef = ref<HTMLDivElement | null>(null);
 const themeStore = useThemeStore();
 const { echartColor } = storeToRefs(themeStore);

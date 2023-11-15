@@ -19,17 +19,17 @@
 <script setup lang="ts">
 import { reactive, onMounted, onBeforeUnmount, computed, ref } from 'vue';
 
-import MenusItem from './MenusItem.vue';
-
 import { menus } from './menus';
-import { BUS_ROUTER } from '@/settings/eventBus';
-import { echartColor } from '@/settings/echartColor';
-import { MENUS } from '@/settings/localStorage';
-import { FIRSTITEM } from '@/settings/routerMap';
-import { useThemeStore } from '@/store/themeColor';
+import MenusItem from './MenusItem.vue';
 
 import type { MenuItem } from './menus';
 import type { EchartColorKey } from '@/settings/echartColor';
+
+import { echartColor } from '@/settings/echartColor';
+import { BUS_ROUTER } from '@/settings/eventBus';
+import { MENUS } from '@/settings/localStorage';
+import { FIRSTITEM } from '@/settings/routerMap';
+import { useThemeStore } from '@/store/themeColor';
 
 const themeStore = useThemeStore();
 

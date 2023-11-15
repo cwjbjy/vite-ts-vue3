@@ -4,6 +4,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+
 import { getAssetsFile } from '@/utils/share';
 const mygoChart = ref<HTMLDivElement | null>(null);
 const dealShow = () => {

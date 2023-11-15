@@ -19,9 +19,9 @@
       </article>
     </main>
     <footer class="footer">
-      <a :href="GITHUB" target="_blank">项目仓库</a>
+      <a :href="GITHUB" target="_blank" class="link">项目仓库</a>
       <br />
-      <span style="cursor: pointer" @click="thirdParty">苏ICP备20022574号-2</span>
+      <span class="link" @click="thirdParty">苏ICP备20022574号-2</span>
     </footer>
   </div>
 </template>
@@ -29,11 +29,11 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-import { GITHUB, BEI_AN } from '@/settings/user';
-
 import LoginForm from './components/LoginForm.vue';
 import LoginOther from './components/LoginOther.vue';
 import LoginRegister from './components/LoginRegister.vue';
+
+import { GITHUB, BEI_AN } from '@/settings/user';
 
 const flag = ref(true);
 const title = ref('登录');
@@ -94,6 +94,10 @@ onBeforeUnmount(() => {
     left: 0;
     right: 0;
     text-align: center;
+    .link {
+      cursor: pointer;
+      color: #fff;
+    }
   }
   .form {
     width: 400px;

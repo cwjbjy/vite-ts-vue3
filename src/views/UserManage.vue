@@ -60,12 +60,14 @@
 </template>
 
 <script setup lang="ts">
-import CryptoJS from 'crypto-es';
-import { ElMessage, ElMessageBox } from 'element-plus';
 import { reactive, ref, inject, onActivated } from 'vue';
 
-import { user, deleteUser, updateUser } from '@/apis/user';
+import CryptoJS from 'crypto-es';
+import { ElMessage, ElMessageBox } from 'element-plus';
+
 import { RowItem } from '@/apis/model/userModel';
+import { user, deleteUser, updateUser } from '@/apis/user';
+
 import { IMAGE_URL } from '@/settings/global';
 
 const imageURL = inject(IMAGE_URL);

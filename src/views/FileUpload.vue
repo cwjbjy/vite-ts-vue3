@@ -23,13 +23,14 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from 'element-plus';
 import { reactive, inject } from 'vue';
 
+import { ElMessage } from 'element-plus';
+
 import { BUS_IMG } from '@/settings/eventBus';
-import { useUserStore } from '@/store/user';
-import { TOKEN } from '@/settings/localStorage';
 import { BASR_URL } from '@/settings/global';
+import { TOKEN } from '@/settings/localStorage';
+import { useUserStore } from '@/store/user';
 
 const baseURL = inject(BASR_URL);
 const userStore = useUserStore();

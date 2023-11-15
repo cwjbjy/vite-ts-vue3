@@ -30,14 +30,18 @@
 </template>
 
 <script setup lang="ts">
-import CryptoJS from 'crypto-es';
-import { ElMessage } from 'element-plus';
-import type { FormInstance, FormRules } from 'element-plus';
 import { onMounted, reactive, ref } from 'vue';
 
-import { register } from '@/apis/user';
-import { getTime, randomName } from '@/utils/share';
+import CryptoJS from 'crypto-es';
+import { ElMessage } from 'element-plus';
+
 import { isValidPass } from '@/utils/rules';
+import { getTime, randomName } from '@/utils/share';
+
+import { register } from '@/apis/user';
+
+import type { FormInstance, FormRules } from 'element-plus';
+
 const emit = defineEmits(['update:register']);
 let verifyCode: any = null;
 let moreClick = false;

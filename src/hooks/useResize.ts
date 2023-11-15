@@ -1,4 +1,5 @@
 import { onMounted, onBeforeUnmount, nextTick, Ref } from 'vue';
+
 import { debounce } from '@/utils/share';
 
 const useResize = (echartRef: Ref<HTMLDivElement | null>) => {

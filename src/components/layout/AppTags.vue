@@ -33,7 +33,9 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
 import { useRouter, useRoute, RouteLocationNormalizedLoaded } from 'vue-router';
+
 import type { RouteInfo } from '#/config';
+
 import { BUS_ROUTER } from '@/settings/eventBus';
 const emit = defineEmits(['update:change']);
 const router = useRouter();

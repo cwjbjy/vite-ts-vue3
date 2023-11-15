@@ -3,11 +3,13 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
 import { onBeforeUnmount, ref, watch, onMounted } from 'vue';
-import { useThemeStore } from '@/store/themeColor';
+
+import { storeToRefs } from 'pinia';
 
 import type { AirLine, Item } from '../airLine';
+
+import { useThemeStore } from '@/store/themeColor';
 
 const props = defineProps<{ model: AirLine }>();
 

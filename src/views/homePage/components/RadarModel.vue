@@ -3,8 +3,9 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
 import { ref, watch, onMounted } from 'vue';
+
+import { storeToRefs } from 'pinia';
 
 import useResize from '@/hooks/useResize';
 import { useThemeStore } from '@/store/themeColor';

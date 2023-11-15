@@ -57,9 +57,10 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from 'element-plus';
 import { reactive } from 'vue';
 import draggable from 'vuedraggable';
+
+import { ElMessage } from 'element-plus';
 const state = reactive({
   todo: [
     {

@@ -7,15 +7,17 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
 import { watch, provide } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+
+import { storeToRefs } from 'pinia';
+
 import useCheckUpdate from '@/hooks/useCheckUpdate';
 import { manage } from '@/router/routes';
-import { useUserStore } from '@/store/user';
 import { BASR_URL, IMAGE_URL } from '@/settings/global';
 import { MANAGE, NAME_HOME } from '@/settings/routerMap';
 import { MANAGE_NAME } from '@/settings/user';
+import { useUserStore } from '@/store/user';
 
 provide(BASR_URL, import.meta.env.VITE_APP_BASEURL);
 provide(IMAGE_URL, import.meta.env.VITE_APP_IMAGE);

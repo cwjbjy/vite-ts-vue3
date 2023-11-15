@@ -41,11 +41,11 @@
 
 <script setup lang="ts">
 import BarModel from './components/BarModel.vue';
+import CylinderModel from './components/CylinderModel.vue';
+import LineModel from './components/LineModel.vue';
+import PictorialBarModel from './components/PictorialBarModel.vue';
 import PieModel from './components/PieModel.vue';
 import ScatterModel from './components/ScatterModel.vue';
-import PictorialBarModel from './components/PictorialBarModel.vue';
-import LineModel from './components/LineModel.vue';
-import CylinderModel from './components/CylinderModel.vue';
 </script>
 
 <style scoped>

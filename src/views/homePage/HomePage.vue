@@ -28,12 +28,12 @@
 </template>
 
 <script setup lang="ts">
+import BarLineModel from './components/BarLineModel.vue';
 import IconArea from './components/IconArea.vue';
 import Language from './components/Language.vue';
+import RadarModel from './components/RadarModel.vue';
 import Schedule from './components/Schedule.vue';
 import UserInfo from './components/UserInfo.vue';
-import BarLineModel from './components/BarLineModel.vue';
-import RadarModel from './components/RadarModel.vue';
 </script>
 
 <style scoped lang="scss">

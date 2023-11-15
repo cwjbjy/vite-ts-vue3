@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+
 import { USER_NAME } from '@/settings/localStorage';
 
 // 第一个参数是id，id必填，且需要保证值唯一

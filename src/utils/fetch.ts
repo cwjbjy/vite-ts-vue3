@@ -1,6 +1,7 @@
 import qs from 'qs';
-import { TOKEN } from '@/settings/localStorage';
+
 import { CODE_TOKEN_EXPIRED } from '@/settings/code';
+import { TOKEN } from '@/settings/localStorage';
 import { LOGIN } from '@/settings/routerMap';
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';

@@ -21,17 +21,19 @@
 </template>
 
 <script setup lang="ts">
-import CryptoJS from 'crypto-es';
-import { ElMessage } from 'element-plus';
-import type { FormInstance, FormRules } from 'element-plus';
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+import CryptoJS from 'crypto-es';
+import { ElMessage } from 'element-plus';
+
 import { login } from '@/apis/user';
-import { useUserStore } from '@/store/user';
+
+import type { FormInstance, FormRules } from 'element-plus';
 
 import { TOKEN, MENUS, USER_NAME } from '@/settings/localStorage';
 import { FIRSTITEM } from '@/settings/routerMap';
+import { useUserStore } from '@/store/user';
 
 const userStore = useUserStore();
 const router = useRouter();

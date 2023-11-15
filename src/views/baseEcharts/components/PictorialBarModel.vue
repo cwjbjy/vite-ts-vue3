@@ -4,8 +4,9 @@
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
 import { onMounted, ref, watch } from 'vue';
+
+import { storeToRefs } from 'pinia';
 
 import useResize from '@/hooks/useResize';
 import { useThemeStore } from '@/store/themeColor';
