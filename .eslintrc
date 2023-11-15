@@ -63,7 +63,7 @@
             "position": "after"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["react"],
+        "pathGroupsExcludedImportTypes": ["vue"],
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",
