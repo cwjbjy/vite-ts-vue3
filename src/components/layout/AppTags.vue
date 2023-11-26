@@ -9,7 +9,7 @@
       >
         <span class="tags-li-title" @click="routerClick(item.path)">{{ item.title }}</span>
         <span class="tags-li-icon" @click="closeTags(index)">
-          <i class="el-icon-close"></i>
+          <i className="iconfont icon-guanbi"></i>
         </span>
       </li>
     </ul>
@@ -138,6 +138,9 @@ watch(
         color: themed('color-font');
       }
     }
+    .iconfont {
+      color: #fff;
+    }
   }
   &-li-title {
     max-width: 80px;
@@ -147,6 +150,12 @@ watch(
     margin-right: 5px;
     @include themify($themes) {
       color: themed('card-font');
+    }
+  }
+  &-li-icon {
+    .iconfont {
+      font-size: 12px;
+      color: #666;
     }
   }
   &-close-box {
