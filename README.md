@@ -1,6 +1,6 @@
 # Vue 3 + TypeScript + Vite
 
-技术栈：vue3全家桶 + element-plus + echarts
+技术栈：Vue3 + Vue Router + Pinia + Element-plus + Echarts
 
 ## 接口
 
