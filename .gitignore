@@ -15,7 +15,6 @@ vue3-manage
 vue3-manage.zip
 
 # Editor directories and files
-.vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
