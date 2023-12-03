@@ -12,8 +12,6 @@ declare module '@vue/runtime-core' {
     AppHeader: typeof import('./src/components/layout/AppHeader.vue')['default']
     AppHome: typeof import('./src/components/layout/AppHome.vue')['default']
     AppTags: typeof import('./src/components/layout/AppTags.vue')['default']
-    BarModel: typeof import('./src/components/echartsModel/BarModel.vue')['default']
-    CylinderModel: typeof import('./src/components/echartsModel/CylinderModel.vue')['default']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -36,14 +34,9 @@ declare module '@vue/runtime-core' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElUpload: typeof import('element-plus/es')['ElUpload']
-    FleetModel: typeof import('./src/components/FleetModel.vue')['default']
-    LineModel: typeof import('./src/components/echartsModel/LineModel.vue')['default']
     MenusItem: typeof import('./src/components/menus/MenusItem.vue')['default']
-    PictorialBarModel: typeof import('./src/components/echartsModel/PictorialBarModel.vue')['default']
-    PieModel: typeof import('./src/components/echartsModel/PieModel.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    ScatterModel: typeof import('./src/components/echartsModel/ScatterModel.vue')['default']
     SideMenu: typeof import('./src/components/menus/SideMenu.vue')['default']
   }
 }

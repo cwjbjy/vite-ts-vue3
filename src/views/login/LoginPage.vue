@@ -1,7 +1,8 @@
 <template>
   <div v-title="title" class="login">
     <header class="top">
-      <span class="title">PC端管理系统(Vue版)</span>
+      <div class="title">PC端管理系统(Vue版)</div>
+      <div class="subTitle">已通过Docker+Jenkins+Webhooks实现自动化打包+部署+邮件通知</div>
     </header>
     <main class="main">
       <article class="form">
@@ -77,10 +78,16 @@ onBeforeUnmount(() => {
   .top {
     width: 100%;
     height: 20vh;
-    @extend %center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     .title {
       font-size: 50px;
       letter-spacing: 5px;
+    }
+    .subTitle {
+      padding-top: 6px;
     }
   }
   .main {
