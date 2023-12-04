@@ -1,4 +1,4 @@
-# Vue 3 + TypeScript + Vite
+# Vue3 + TypeScript + Vite
 
 技术栈：Vue3 + Vue Router + Pinia + Element-plus + Echarts
 
