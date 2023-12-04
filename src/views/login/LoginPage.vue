@@ -28,7 +28,7 @@
       <br />
       <span class="link" @click="thirdParty">苏ICP备20022574号-2</span>
     </footer>
-    <el-dialog v-model="dialogModal" title="流程图" width="90%">
+    <el-dialog v-model="dialogModal" title="流程图" width="90%" custom-class="dialogClass">
       <div>1. 通过Git提交代码到GitHub</div>
       <div>2. GitHub通过Webhooks通知Jenkins</div>
       <div>3. Jenkins fetch源码到工作空间</div>
@@ -111,11 +111,16 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped lang="scss">
+:deep(.el-dialog__body) {
+  padding-top: 0;
+}
+
 .login {
   height: 100vh;
   min-width: 600px;
   color: $color-font;
   background-color: $background-login;
+
   .pic {
     margin-top: 10px;
   }
