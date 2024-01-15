@@ -1,5 +1,6 @@
-import chartRoutes from './chart';
-import dragRoutes from './drag';
+<%_ chooseModules.forEach(function(item){%>
+    import <%=item %> from '<%=deelRouteName(item) %>';
+<% }) _%>
 
 import * as path from '@/settings/routerMap';
 
@@ -99,8 +100,9 @@ const routes = [
         },
         component: ChatRoom,
       },
-      ...chartRoutes,
-      ...dragRoutes,
+      <%_ chooseModules.forEach(function(item){%>
+        ...<%=item %>,
+       <% }) %>
     ],
   },
   {

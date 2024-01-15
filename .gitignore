@@ -13,6 +13,7 @@ dist-ssr
 *.local
 vue3-manage
 vue3-manage.zip
+/src/router/dev.routerConfig.ts
 
 # Editor directories and files
 !.vscode/extensions.json
