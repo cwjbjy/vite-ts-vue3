@@ -65,7 +65,7 @@ const getPortrait = () => {
     user_name: user_name.value,
   }).then((res: any) => {
     let fileName = res.data[0].photo;
-    userStore.updateImageUrl(`${imageURL}/${fileName}`);
+    userStore.updateImageUrl(imageURL + fileName);
   });
 };
 

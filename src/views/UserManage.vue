@@ -15,12 +15,12 @@
           <el-table-column label="用户名" prop="user_name" align="center"></el-table-column>
           <el-table-column label="单击图像可以放大" align="center">
             <template #default="scope">
-              <el-image
-                class="table-td-thumb"
-                :src="`${imageURL}${scope.row.photo}`"
-                :preview-src-list="[`${imageURL}${scope.row.photo}`]"
-                fit="cover"
-              ></el-image>
+              <img
+                style="width: 100px; height: 100px"
+                :src="imageURL + scope.row.photo"
+                alt="加载失败"
+                :style="{ objectFit: 'cover' }"
+              />
             </template>
           </el-table-column>
           <el-table-column label="角色描述" align="center">
