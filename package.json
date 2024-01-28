@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:m": "node ./scripts/dev/index.js && vite -- --moduleLoad",
-    "build": "vite build",
+    "build": "node ./scripts/release.js && vite build",
     "ts": "vue-tsc --noEmit",
     "preview": "vite preview",
     "lint": "eslint src --fix --ext .ts,.tsx,.vue,.js,.jsx --max-warnings 0"
