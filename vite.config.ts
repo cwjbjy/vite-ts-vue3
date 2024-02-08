@@ -1,6 +1,7 @@
 import path from 'path'; //这个path用到了上面安装的@types/node
 
 import vue from '@vitejs/plugin-vue';
+import { visualizer } from 'rollup-plugin-visualizer';
 import AutoImport from 'unplugin-auto-import/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
@@ -36,6 +37,7 @@ export default () => {
         ...viteCompression(),
         apply: 'build',
       },
+      visualizer({ open: true }),
     ],
     //这里进行配置别名
     resolve: {
