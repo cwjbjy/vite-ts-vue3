@@ -44,7 +44,7 @@
           ></el-col>
           <el-col :span="12">
             <div class="gutter-row">
-              1. <img :src="getAssetsFile('login/2.png')" class="headPortrait" alt="加载失败" />
+              2. <img :src="getAssetsFile('login/2.png')" class="headPortrait" alt="加载失败" />
             </div>
           </el-col>
         </el-row>
