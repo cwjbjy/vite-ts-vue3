@@ -2,6 +2,7 @@ import HttpClient from '@/utils/fetch';
 
 import { Url } from './url';
 
+import type { RowItem, UserImage, Login } from './model/userModel';
 import type {
   LoginParams,
   RegisterParams,
@@ -13,17 +14,17 @@ import type {
 
 //登录
 export const login = (params: LoginParams) => {
-  return HttpClient.post(Url.Login, params);
+  return HttpClient.post<Login>(Url.Login, params);
 };
 
 //注册
 export const register = (params: RegisterParams) => {
-  return HttpClient.post(Url.Register, params);
+  return HttpClient.post<{ msg: string }>(Url.Register, params);
 };
 
 //获取所有用户信息
 export const user = () => {
-  return HttpClient.get(Url.GetAllUser);
+  return HttpClient.get<{ data: RowItem[] }>(Url.GetAllUser);
 };
 
 //删除普通用户
@@ -38,12 +39,12 @@ export const updateUser = (params: UpdateUserParams) => {
 
 //获取上传图片
 export const getImage = (params: UserNameParams) => {
-  return HttpClient.get(Url.GetImage, params);
+  return HttpClient.get<UserImage>(Url.GetImage, params);
 };
 
 //获取用户单条信息
 export const getUser = (params: UserNameParams) => {
-  return HttpClient.get(Url.GetUser, params);
+  return HttpClient.get<{ data: string }>(Url.GetUser, params);
 };
 
 //埋点

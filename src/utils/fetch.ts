@@ -19,17 +19,12 @@ class FetchClient {
    * 请求拦截器
    */
   interceptorsRequest({ url, method, params }: Props) {
-    let conf = {};
     let data = '';
 
     //增加token
-    const token = localStorage.getItem(TOKEN);
-    const headers = Object.assign(
-      {},
-      {
-        authorization: `Bearer ${token}`,
-      },
-    );
+    const headers = {
+      authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
+    };
 
     if (method === 'GET' || method === 'DELETE') {
       //fetch对GET请求等，不支持将参数传在body上，只能拼接url
@@ -43,103 +38,75 @@ class FetchClient {
         Object.assign(headers, { 'Content-Type': 'application/json' });
         data = JSON.stringify(params);
       }
-      conf = {
-        body: data,
-      };
     }
+
+    const options = {
+      method,
+      headers,
+      body: method !== 'GET' && method !== 'DELETE' ? data : undefined,
+    };
+
     return {
-      url,
-      options: Object.assign(
-        {},
-        {
-          method,
-          headers,
-        },
-        conf,
-      ),
+      url: baseURL + url,
+      options,
     };
   }
 
   /**
    * 响应拦截器
    */
-  interceptorsResponse(res: Response) {
-    return new Promise((resolve, reject) => {
-      if (res.ok) {
-        try {
-          return resolve(res.json());
-        } catch {
-          return resolve({
-            status: 'ok',
-          });
-        }
-      } else {
-        const { status } = res;
-        /* token过期，重定向到首页 */
-        if ([CODE_TOKEN_EXPIRED].includes(status)) {
-          window.location.href = LOGIN;
-        }
+
+  interceptorsResponse<T>(res: Response): Promise<T> {
+    if (res.ok) {
+      return res.json() as Promise<T>;
+    } else {
+      const { status } = res;
+      /* token过期，重定向到首页 */
+      if ([CODE_TOKEN_EXPIRED].includes(status)) {
+        window.location.href = LOGIN;
       }
-      console.error('网络错误，请稍后重试');
-      reject(res);
-    });
+      throw new Error('Request failed');
+    }
   }
 
   /**
    * 代理模式
    */
-  async httpFactory({ url = '', params = {}, method }: Props) {
-    const req = await this.interceptorsRequest({
-      url: baseURL + url,
+  async httpFactory<T>({ url = '', params = {}, method }: Props): Promise<T> {
+    const req = this.interceptorsRequest({
+      url,
       method,
       params,
     });
     const res = await fetch(req.url, req.options); //网络请求
-    const rst = await this.interceptorsResponse(res);
-    return rst;
+    return this.interceptorsResponse(res);
+  }
+
+  async request<T>(method: Method, url: string, params?: Record<string, any>): Promise<T> {
+    return this.httpFactory<T>({ url, params, method });
   }
 
   /**
    * 适配器模式
    */
-  async get(url: string, params?: Record<string, any>): Promise<any> {
-    return await this.httpFactory({
-      url,
-      params,
-      method: 'GET',
-    });
+  get<T>(url: string, params?: Record<string, any>): Promise<T> {
+    return this.request<T>('GET', url, params);
   }
 
-  async post(url: string, params?: Record<string, any>): Promise<any> {
-    return await this.httpFactory({
-      url,
-      params,
-      method: 'POST',
-    });
+  post<T>(url: string, params?: Record<string, any>): Promise<T> {
+    return this.request<T>('POST', url, params);
   }
 
-  async put(url: string, params?: Record<string, any>): Promise<any> {
-    return await this.httpFactory({
-      url,
-      params,
-      method: 'PUT',
-    });
+  put<T>(url: string, params?: Record<string, any>): Promise<T> {
+    return this.request<T>('PUT', url, params);
   }
 
-  async delete(url: string, params?: Record<string, any>): Promise<any> {
-    return await this.httpFactory({
-      url,
-      params,
-      method: 'DELETE',
-    });
+  delete<T>(url: string, params?: Record<string, any>): Promise<T> {
+    return this.request<T>('DELETE', url, params);
   }
 
-  async patch(url: string, params?: Record<string, any>): Promise<any> {
-    return await this.httpFactory({
-      url,
-      params,
-      method: 'PATCH',
-    });
+  patch<T>(url: string, params?: Record<string, any>): Promise<T> {
+    return this.request<T>('PATCH', url, params);
   }
 }
 

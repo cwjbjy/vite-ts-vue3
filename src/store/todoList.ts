@@ -41,7 +41,7 @@ export const useTodoList = defineStore('todoList', {
           });
           break;
         case 'edit':
-          this.todoList.forEach((item, index) => {
+          this.todoList.forEach((item: { title: string }, index: number | undefined) => {
             if (payload.index === index) {
               item.title = payload.data!;
             }

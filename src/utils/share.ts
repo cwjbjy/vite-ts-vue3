@@ -109,7 +109,7 @@ export const isValidKey = function <T extends object, K extends keyof T>(obj: T,
 
 //防抖
 export const debounce = (handler: () => void, time: number) => {
-  let timer: NodeJS.Timer;
+  let timer: string | number | NodeJS.Timeout | undefined;
   return function () {
     clearTimeout(timer);
     timer = setTimeout(() => {
