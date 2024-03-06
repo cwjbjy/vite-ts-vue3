@@ -29,7 +29,7 @@ class Chat {
   }
   //加入聊天室
   open({ params, closeCallBack }: OpenProps) {
-    this.WSInstance = new WebsocketClass({ closeCallBack });
+    this.WSInstance = new WebsocketClass('', closeCallBack);
     this.WSInstance.connect(params)
       .then(() => {
         ElMessage({
@@ -47,7 +47,7 @@ class Chat {
   //发送消息
   sendMessage(params: Message) {
     if (this.WSInstance) {
-      this.WSInstance.sendMessage({ msg: params });
+      this.WSInstance.sendMessage(params);
     }
   }
   //关闭消息

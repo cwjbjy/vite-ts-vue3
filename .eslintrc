@@ -20,11 +20,12 @@
       "jsx": true
     }
   },
-  "ignorePatterns": ["dist", "node_modules", ".eslintrc", "src/assets","src/router/dev.routerConfig.ts"],
+  "ignorePatterns": ["dist", "node_modules", ".eslintrc", "src/assets", "src/router/dev.routerConfig.ts"],
   "plugins": ["vue", "@typescript-eslint", "prettier", "import"],
   "rules": {
     "vue/multi-word-component-names": "off", // 禁用vue文件强制多个单词命名
     "@typescript-eslint/no-explicit-any": ["off"], //允许使用any
+    "@typescript-eslint/no-empty-function": ["off"], // 关闭空函数警告
     "@typescript-eslint/no-this-alias": [
       "error",
       {

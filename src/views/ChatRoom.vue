@@ -226,4 +226,3 @@ img {
   border-radius: 0;
 }
 </style>
-@/utils/ws/chat
