@@ -16,7 +16,7 @@
           <el-table-column label="单击图像可以放大" align="center">
             <template #default="scope">
               <img
-                style="width: 100px; height: 100px"
+                style="width: 50px; height: 50px"
                 :src="imageURL + scope.row.photo"
                 alt="加载失败"
                 :style="{ objectFit: 'cover' }"

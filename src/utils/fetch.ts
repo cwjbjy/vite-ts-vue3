@@ -1,4 +1,4 @@
-import qs from 'qs';
+import queryString from 'query-string';
 
 import { CODE_TOKEN_EXPIRED } from '@/settings/code';
 import { TOKEN } from '@/settings/localStorage';
@@ -28,10 +28,10 @@ class FetchClient {
 
     if (method === 'GET' || method === 'DELETE') {
       //fetch对GET请求等，不支持将参数传在body上，只能拼接url
-      data = qs.stringify(params, {
-        arrayFormat: 'repeat',
-      }) as string;
-      url = `${url}?${data}`;
+      if (params) {
+        data = queryString.stringify(params);
+        url = `${url}?${data}`;
+      }
     } else {
       //非form-data传输JSON数据格式
       if (!['[object FormData]', '[object URLSearchParams]'].includes(Object.prototype.toString.call(params))) {
