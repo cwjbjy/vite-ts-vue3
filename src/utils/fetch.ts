@@ -57,16 +57,28 @@ class FetchClient {
    */
 
   interceptorsResponse<T>(res: Response): Promise<T> {
-    if (res.ok) {
-      return res.json() as Promise<T>;
-    } else {
-      const { status } = res;
-      /* token过期，重定向到首页 */
-      if ([CODE_TOKEN_EXPIRED].includes(status)) {
-        window.location.href = LOGIN;
+    return new Promise((resolve, reject) => {
+      if (res.ok) {
+        return resolve(res.json() as Promise<T>);
+      } else {
+        const { status } = res;
+        if ([CODE_TOKEN_EXPIRED].includes(status)) {
+          window.location.href = LOGIN;
+        } else {
+          res
+            .clone()
+            .text()
+            .then((text) => {
+              try {
+                const errorData = JSON.parse(text);
+                return reject(errorData || '接口错误');
+              } catch (text) {
+                return reject(text);
+              }
+            });
+        }
       }
-      throw new Error('Request failed');
-    }
+    });
   }
 
   /**

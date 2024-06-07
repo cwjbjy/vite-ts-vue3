@@ -31,6 +31,7 @@ import { login } from '@/apis/user';
 
 import type { FormInstance, FormRules } from 'element-plus';
 
+import { CODE_ERROR } from '@/settings/code';
 import { TOKEN, MENUS, USER_NAME } from '@/settings/localStorage';
 import { FIRSTITEM } from '@/settings/routerMap';
 import { useUserStore } from '@/store/user';
@@ -66,7 +67,7 @@ const handleLogin = () => {
           router.push(FIRSTITEM);
         })
         .catch((err) => {
-          if (err.response.status === 400) {
+          if (err.code === CODE_ERROR) {
             ElMessage({
               message: '用户名或密码错误',
               type: 'error',
