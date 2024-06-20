@@ -1,6 +1,7 @@
 import path from 'path'; //这个path用到了上面安装的@types/node
 
 import vue from '@vitejs/plugin-vue';
+import minimist from 'minimist';
 import { visualizer } from 'rollup-plugin-visualizer';
 import AutoImport from 'unplugin-auto-import/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
@@ -30,7 +31,11 @@ export default () => {
           },
         ],
         {
-          apply: 'serve',
+          apply(config, { command }) {
+            const { _ } = minimist(process.argv.slice(2));
+            // 开发环境，并且包含启动参数--moduleLoad
+            return command === 'serve' && _.includes('--moduleLoad');
+          },
         },
       ),
       {
@@ -51,7 +56,6 @@ export default () => {
       host: '0.0.0.0',
       port: 8080,
       open: true,
-      https: false,
       proxy: {
         '/api': {
           target: 'your https address',
