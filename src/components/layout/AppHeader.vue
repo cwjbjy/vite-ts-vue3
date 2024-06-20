@@ -54,9 +54,8 @@ import { useUserStore } from '@/store/user';
 const imageURL = inject(IMAGE_URL);
 const userStore = useUserStore();
 const themeStore = useThemeStore();
-const { updateEchartColor, updateFleetBg, updateTheme } = themeStore;
+const { updateTheme } = themeStore;
 const router = useRouter();
-const emit = defineEmits(['theme']);
 const user_name = ref(userStore.user_name);
 let imageUrl = computed(() => userStore.imageUrl);
 const active = (color: string) => (themeStore.theme === color ? 'dropdownActive' : '');
@@ -77,10 +76,11 @@ const handleCommand = (command: string) => {
   }
 };
 const switchColor = (command: EchartColorKey) => {
-  emit('theme', command);
-  updateEchartColor(echartColor[command].font);
-  updateFleetBg(echartColor[command].fleetBg);
-  updateTheme(command);
+  updateTheme({
+    echartColor: echartColor[command].font,
+    fleetBg: echartColor[command].fleetBg,
+    theme: command,
+  });
 };
 
 getPortrait();

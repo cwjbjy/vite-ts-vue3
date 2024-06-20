@@ -1,23 +1,22 @@
 import { defineStore } from 'pinia';
 
+const initalState = {
+  echartColor: '#333',
+  fleetBg: 'rgb(6,42,88)',
+  theme: 'gray',
+};
+
+type State = typeof initalState;
+
 // 第一个参数是id，id必填，且需要保证值唯一
 export const useThemeStore = defineStore('themeColor', {
-  state: () => {
-    return {
-      echartColor: '#333',
-      fleetBg: 'rgb(6,42,88)',
-      theme: 'gray',
-    };
-  },
+  state: () => initalState,
   actions: {
-    updateEchartColor(echartColor: string) {
+    updateTheme({ echartColor, fleetBg, theme }: State) {
       this.echartColor = echartColor;
-    },
-    updateFleetBg(fleetBg: string) {
       this.fleetBg = fleetBg;
-    },
-    updateTheme(theme: string) {
       this.theme = theme;
     },
   },
+  persist: true,
 });

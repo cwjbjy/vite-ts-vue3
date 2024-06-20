@@ -1,7 +1,7 @@
 <template>
   <div :class="themeClass">
     <div class="app-container">
-      <AppHeader @theme="colorChange" />
+      <AppHeader />
       <main class="app-main">
         <aside>
           <SideMenu />
@@ -32,15 +32,15 @@ import AppTags from './AppTags.vue';
 import SideMenu from '../menus/SideMenu.vue';
 
 import type { RouteInfo } from '#/config';
-const theme = ref('gray');
+
+import { useThemeStore } from '@/store/themeColor';
+
 const keepList = ref<string[]>([]);
 const exList = ref(['HomePage', 'FleetLine']);
 
-const themeClass = computed(() => `theme-${theme.value}`);
+const themeStore = useThemeStore();
 
-function colorChange(val: string) {
-  theme.value = val;
-}
+const themeClass = computed(() => `theme-${themeStore.theme}`);
 
 function tagChange(val: RouteInfo[]) {
   keepList.value = [];
@@ -110,8 +110,6 @@ function tagChange(val: RouteInfo[]) {
 }
 .el-input__inner {
   @include themify($themes) {
-    // background-color: themed('card-background');
-    // border: 1px solid themed('card-border');
     color: themed('card-font');
   }
 }
@@ -130,7 +128,7 @@ function tagChange(val: RouteInfo[]) {
 }
 .el-table--enable-row-hover .el-table__body tr:hover > td {
   @include themify($themes) {
-    background-color: themed('background-main');
+    background-color: themed('background-main') !important;
   }
 }
 .el-table--border::after,
