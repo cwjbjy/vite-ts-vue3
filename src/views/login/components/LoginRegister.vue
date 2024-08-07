@@ -33,10 +33,11 @@
 import { onMounted, reactive, ref } from 'vue';
 
 import CryptoJS from 'crypto-es';
+import dayjs from 'dayjs';
 import { ElMessage } from 'element-plus';
+import { nanoid } from 'nanoid';
 
 import { isValidPass } from '@/utils/rules';
-import { getTime, randomName } from '@/utils/share';
 
 import { register } from '@/apis/user';
 
@@ -48,7 +49,7 @@ let moreClick = false;
 const ruleFormRef = ref<FormInstance>();
 const authCode = ref('');
 const ruleForm = reactive({
-  reg_name: randomName('游客'),
+  reg_name: `user_${nanoid(6)}`,
   verification: '',
   rge_pass: '',
   rge_passAgain: '',
@@ -90,7 +91,7 @@ const handleRegister = async () => {
           userName: ruleForm.reg_name,
           passWord: CryptoJS.MD5(ruleForm.rge_pass).toString(),
           authority: 2,
-          createTime: getTime(),
+          createTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
           photo: 'userlogo.png',
         };
         register(params)

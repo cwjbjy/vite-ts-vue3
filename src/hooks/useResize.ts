@@ -1,6 +1,6 @@
 import { onMounted, onBeforeUnmount, nextTick, Ref } from 'vue';
 
-import { debounce } from '@/utils/share';
+import { debounce } from 'lodash-es';
 
 const useResize = (echartRef: Ref<HTMLDivElement | null>) => {
   const debounceAutoSize = debounce(() => {
