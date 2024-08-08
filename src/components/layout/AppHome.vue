@@ -108,11 +108,6 @@ function tagChange(val: RouteInfo[]) {
     color: themed('color-font');
   }
 }
-.el-input__inner {
-  @include themify($themes) {
-    color: themed('card-font');
-  }
-}
 
 .el-table th,
 .el-table tr {

@@ -82,29 +82,23 @@ const dialogVisible = ref(false);
 const explainDialog = ref(false);
 const historyInfos = ref<ChatInfo[]>([]);
 const infoListContent = ref<HTMLDivElement | null>(null);
-const closeCallBack = () => {
-  historyInfos.value = [];
-};
 
 const connect = () => {
-  let user = {
+  const user = {
     type: 'setName',
     name: user_name.value,
     image: imageUrl.value,
   };
-  insService.open({
-    params: user,
-    closeCallBack,
-  });
+  insService.open(user);
   connectFlag.value = true;
   closeFlag.value = false;
 };
 
 const close = () => {
-  let close = {
+  insService.close({
     type: 'close',
-  };
-  insService.close(close);
+  });
+  historyInfos.value = [];
   connectFlag.value = false;
   closeFlag.value = true;
 };

@@ -13,53 +13,36 @@ interface User {
   image: string;
 }
 
-interface OpenProps {
-  params: User;
-  closeCallBack: () => void;
-}
-
 /**
  * 聊天室服务
  */
 
 class Chat {
-  private WSInstance: WebsocketClass | null;
-  constructor() {
-    this.WSInstance = null;
-  }
+  private WSInstance?: WebsocketClass;
   //加入聊天室
-  open({ params, closeCallBack }: OpenProps) {
-    this.WSInstance = new WebsocketClass('', closeCallBack);
-    this.WSInstance.connect(params)
-      .then(() => {
-        ElMessage({
-          message: '连接成功',
-          type: 'success',
-        });
-      })
-      .catch(() => {
-        ElMessage({
-          message: '网络错误，请稍后重试',
-          type: 'error',
-        });
+  open(params: User) {
+    this.WSInstance = new WebsocketClass(import.meta.env.VITE_APP_WS);
+    this.WSInstance.connect().then((res) => {
+      ElMessage({
+        message: res,
+        type: 'success',
       });
+      this.sendMessage(params);
+    });
   }
   //发送消息
   sendMessage(params: Message) {
-    if (this.WSInstance) {
-      this.WSInstance.sendMessage(params);
-    }
+    this.WSInstance?.sendMessage(params);
   }
   //关闭消息
   close(params: Message) {
-    if (this.WSInstance) {
-      this.WSInstance.close(params).then(() => {
-        ElMessage({
-          message: '关闭成功',
-          type: 'success',
-        });
+    this.sendMessage(params);
+    this.WSInstance?.close().then((res) => {
+      ElMessage({
+        message: res,
+        type: 'success',
       });
-    }
+    });
   }
 }
 
