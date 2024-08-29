@@ -23,7 +23,7 @@ const PDFPreview = () => import('@/views/PDFPreview.vue');
 
 const I18n = () => import('@/views/I18n/I18nPage.vue');
 
-const ChatRoom = () => import('@/views/ChatRoom.vue');
+const ChatRoomSocket = () => import('@/views/ChatRoomSocket.vue');
 
 const UserManage = () => import('@/views/UserManage.vue');
 
@@ -97,7 +97,7 @@ const routes = [
         meta: {
           title: '聊天室',
         },
-        component: ChatRoom,
+        component: ChatRoomSocket,
       },
       ...chartRoutes,
       ...dragRoutes,
