@@ -4,7 +4,9 @@
 
 ## 接口
 
-node：https://github.com/cwjbjy/nest-app
+源码地址：https://github.com/cwjbjy/nest-app
+
+接口文档：https://wen.caowj.top/api/swagger-ui
 
 ## 自动化部署
 
