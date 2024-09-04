@@ -11,3 +11,7 @@
 ## 自动化部署
 
 Docker+Jenkins+WebHooks
+
+## Web展示地址
+
+https://vue3.caowj.top/login
