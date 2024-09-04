@@ -4,7 +4,7 @@
 
 ## 接口
 
-node：[https://github.com/cwjbjy/express-api](https://github.com/cwjbjy/nest-app)
+node：https://github.com/cwjbjy/nest-app
 
 ## 自动化部署
 
