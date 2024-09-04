@@ -5,7 +5,7 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import routes from './routes';
 
-import { TOKEN, MENUS, USER_NAME } from '@/settings/localStorage';
+import { TOKEN, MENUS } from '@/settings/localStorage';
 import { LOGIN } from '@/settings/routerMap';
 
 const router = createRouter({
@@ -22,7 +22,6 @@ router.beforeEach((to) => {
   if (to.path === LOGIN) {
     localStorage.removeItem(TOKEN);
     localStorage.removeItem(MENUS);
-    localStorage.removeItem(USER_NAME);
   }
 
   const token = localStorage.getItem(TOKEN);

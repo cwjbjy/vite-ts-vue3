@@ -35,7 +35,7 @@ import { useUserStore } from '@/store/user';
 const baseURL = inject(BASR_URL);
 const userStore = useUserStore();
 const headers = reactive({ authorization: 'Bearer ' + localStorage.getItem(TOKEN) });
-const user = reactive({ user_name: userStore.user_name });
+const user = reactive({ userName: userStore.userName });
 
 const onSuccess = (response: { msg: string }) => {
   ElMessage({

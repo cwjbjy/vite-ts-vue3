@@ -21,7 +21,7 @@
             <dl
               v-for="(item, index) in historyInfos"
               :key="index"
-              :class="[item.name == user_name ? 'info-right' : 'info-left']"
+              :class="[item.name == userName ? 'info-right' : 'info-left']"
             >
               <dt>
                 <img v-if="item.image" :src="item.image" class="headPortrait" alt="图片加载失败" />
@@ -74,7 +74,7 @@ import { BUS_WS } from '@/settings/eventBus';
 import { useUserStore } from '@/store/user';
 
 const userStore = useUserStore();
-const { user_name, imageUrl } = storeToRefs(userStore);
+const { userName, imageUrl } = storeToRefs(userStore);
 const msg = ref('');
 const connectFlag = ref(false);
 const closeFlag = ref(true);
@@ -87,12 +87,12 @@ const firstConnect = ref(true);
 const connect = () => {
   if (firstConnect.value) {
     socket.connect({
-      name: user_name.value,
+      name: userName.value,
       image: imageUrl.value,
     });
   } else {
     socket.reconnect({
-      name: user_name.value,
+      name: userName.value,
       image: imageUrl.value,
     });
   }

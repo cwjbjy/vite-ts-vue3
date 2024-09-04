@@ -89,7 +89,7 @@ const handleRegister = async () => {
       if (res) {
         const params = {
           userName: ruleForm.reg_name,
-          passWord: CryptoJS.MD5(ruleForm.rge_pass).toString(),
+          password: CryptoJS.MD5(ruleForm.rge_pass).toString(),
           authority: 2,
           createTime: dayjs().format('YYYY-MM-DD'),
           photo: 'userlogo.png',

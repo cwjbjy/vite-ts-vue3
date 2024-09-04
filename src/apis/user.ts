@@ -3,14 +3,7 @@ import HttpClient from '@/utils/fetch';
 import { Url } from './url';
 
 import type { RowItem, UserImage, Login } from './model/userModel';
-import type {
-  LoginParams,
-  RegisterParams,
-  UserIdParams,
-  UpdateUserParams,
-  UserNameParams,
-  TrackParams,
-} from './types/userType';
+import type { LoginParams, RegisterParams, UserIdParams, UpdateUserParams, UserNameParams } from './types/userType';
 
 //登录
 export const login = (params: LoginParams) => {
@@ -45,9 +38,4 @@ export const getImage = (params: UserNameParams) => {
 //获取用户单条信息
 export const getUser = (params: UserNameParams) => {
   return HttpClient.get<{ data: string }>(Url.GetUser, params);
-};
-
-//埋点
-export const trackWeb = (params: TrackParams) => {
-  return HttpClient.get(Url.Track, params);
 };

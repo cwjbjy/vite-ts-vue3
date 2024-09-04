@@ -32,7 +32,7 @@ import { login } from '@/apis/user';
 import type { FormInstance, FormRules } from 'element-plus';
 
 import { CODE_ERROR } from '@/settings/code';
-import { TOKEN, MENUS, USER_NAME } from '@/settings/localStorage';
+import { TOKEN, MENUS } from '@/settings/localStorage';
 import { FIRSTITEM } from '@/settings/routerMap';
 import { useUserStore } from '@/store/user';
 
@@ -57,12 +57,11 @@ const handleLogin = () => {
       moreClick = true;
       login({
         userName: ruleForm.name,
-        passWord: CryptoJS.MD5(ruleForm.pass).toString(),
+        password: CryptoJS.MD5(ruleForm.pass).toString(),
       })
         .then((res) => {
           localStorage.setItem(MENUS, res.data.auth);
           localStorage.setItem(TOKEN, res.data.token);
-          localStorage.setItem(USER_NAME, ruleForm.name);
           userStore.updateUserName(ruleForm.name);
           router.push(FIRSTITEM);
         })

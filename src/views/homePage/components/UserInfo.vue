@@ -5,7 +5,7 @@
         <img :src="imageUrl" class="user-img" alt="加载失败" />
       </el-col>
       <el-col :span="12" class="user-area">
-        <div class="user-name">{{ user_name }}</div>
+        <div class="user-name">{{ userName }}</div>
       </el-col>
     </el-row>
     <div class="user-bottom">
@@ -31,11 +31,11 @@ import { getUser } from '@/apis/user';
 import { useUserStore } from '@/store/user';
 
 const userStore = useUserStore();
-const { imageUrl, user_name } = storeToRefs(userStore);
+const { imageUrl, userName } = storeToRefs(userStore);
 const registerTime = ref('');
-const role = computed(() => (userStore.user_name == '一叶扁舟' ? '管理员' : '普通用户'));
+const role = computed(() => (userStore.userName == '一叶扁舟' ? '管理员' : '普通用户'));
 getUser({
-  user_name: user_name.value,
+  userName: userName.value,
 }).then((res) => {
   registerTime.value = res.data;
 });

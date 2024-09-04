@@ -25,12 +25,12 @@ provide(IMAGE_URL, import.meta.env.VITE_APP_IMAGE);
 const router = useRouter();
 const route = useRoute();
 const userStore = useUserStore();
-const { user_name } = storeToRefs(userStore);
+const { userName } = storeToRefs(userStore);
 
 useCheckUpdate(); //检测版本更新的hook
 
 watch(route, async (newVal) => {
-  if (user_name.value === MANAGE_NAME) {
+  if (userName.value === MANAGE_NAME) {
     /* 在4.x版本中需手动调用router.replace方法重定向，
           因为动态路由页面刷新时，matched的值为空；
           在3.x版本中，刷新页面添加异步路由，matched有值，不需要再重定向 */

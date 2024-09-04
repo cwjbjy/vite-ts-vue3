@@ -2,10 +2,9 @@
 export enum Url {
   Login = '/login',
   Register = '/register',
-  GetAllUser = '/user',
+  GetAllUser = '/users',
   DeleteUser = '/deleteUser',
   UpdateUser = '/updateUser',
   GetImage = '/getImage',
-  GetUser = '/getUser',
-  Track = '/getUserInfo',
+  GetUser = '/findUser',
 }

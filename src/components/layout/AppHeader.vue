@@ -20,7 +20,7 @@
         <div class="userImage">
           <img :src="imageUrl" class="user-img" alt="加载失败" />
           <span>
-            {{ user_name }}
+            {{ userName }}
             <i class="el-icon-caret-bottom"></i>
           </span>
         </div>
@@ -56,12 +56,12 @@ const userStore = useUserStore();
 const themeStore = useThemeStore();
 const { updateTheme } = themeStore;
 const router = useRouter();
-const user_name = ref(userStore.user_name);
+const userName = ref(userStore.userName);
 let imageUrl = computed(() => userStore.imageUrl);
 const active = (color: string) => (themeStore.theme === color ? 'dropdownActive' : '');
 const getPortrait = () => {
   getImage({
-    user_name: user_name.value,
+    userName: userName.value,
   }).then((res: any) => {
     let fileName = res.data[0].photo;
     userStore.updateImageUrl(imageURL + fileName);

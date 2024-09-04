@@ -1,7 +1,7 @@
 /* 接口请求参数类型 */
 export interface LoginParams {
   userName: string;
-  passWord: string;
+  password: string;
 }
 
 export interface RegisterParams extends LoginParams {
@@ -15,13 +15,9 @@ export interface UserIdParams {
 }
 
 export interface UserNameParams {
-  user_name: string;
+  userName: string;
 }
 
 export interface UpdateUserParams extends UserIdParams, UserNameParams {
   password: string;
-}
-
-export interface TrackParams {
-  data: string;
 }

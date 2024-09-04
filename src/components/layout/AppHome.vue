@@ -157,11 +157,6 @@ function tagChange(val: RouteInfo[]) {
     border-bottom: 1px solid themed('card-border');
   }
 }
-.el-table thead {
-  @include themify($themes) {
-    color: themed('card-font');
-  }
-}
 .el-table {
   @include themify($themes) {
     color: themed('card-font');
