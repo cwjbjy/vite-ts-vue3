@@ -1,49 +1,83 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-const useCheckUpdate = () => {
-  const timer = ref();
-  const new_hash = import.meta.env.VITE_APP_VERSION; //获取新版本的hash值
-  let uploadNotificationShow = false; //防止弹出多个框
+import useCheckUpdateWorker, { ReflectMessageType } from '../utils/worker/checkUpdate/useCheckUpdateWorker';
 
-  const getHash = () => {
-    if (!uploadNotificationShow && new_hash) {
-      const old_hash = localStorage.getItem('vs');
-      if (!old_hash) {
-        // 如果本地没有，则存储版本信息
-        window.localStorage.setItem('vs', new_hash);
-      } else if (new_hash !== old_hash) {
-        uploadNotificationShow = true;
-        // 本地已有版本信息，但是和新版不同：版本更新，弹出提示
+const useCheckUpdate = () => {
+  const forbidUpdate = ref(false); //防止弹出多个框
+  const versionRef = ref<string>();
+  const firstReqRef = ref(true);
+  const { start, stop, getEtag, workerRef } = useCheckUpdateWorker('/worker/checkUpdate.worker.js', {
+    name: 'updateModal',
+    type: 'module',
+  });
+
+  const handlePageUpdateCheck = (etag: string) => {
+    if (etag) {
+      const version = versionRef.value;
+      if (!version) {
+        versionRef.value = etag;
+      } else if (version === etag) {
+        // eslint-disable-next-line no-console
+        console.log('最新版本');
+      } else {
+        // 版本更新，弹出提示
         if (window.confirm('检测到系统当前版本已更新，请刷新浏览器后使用。')) {
-          uploadNotificationShow = false;
-          // 更新localStorage版本号信息
-          window.localStorage.setItem('vs', new_hash);
+          forbidUpdate.value = false;
           // 刷新页面
           window.location.reload();
-        } else {
-          uploadNotificationShow = false;
         }
       }
     }
   };
 
-  onMounted(() => {
-    getHash();
-    timer.value = setInterval(getHash, 60 * 60 * 1000);
-    /* 切换浏览器tab时 */
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') {
-        getHash();
-      }
-    });
+  //开启检测
+  const startPollingPageUpdate = () => {
+    //开发环境不进行版本更新提示
+    // if (process.env.NODE_ENV === 'development') return;
+    //第一次立即执行
+    if (firstReqRef.value) {
+      firstReqRef.value = false;
+      getEtag();
+    }
+    stopPollingPageUpdate();
+    start();
+  };
 
-    /* 当鼠标点击过当前页面，此时切换到其他应用会触发页面的blur；
-        再次切回到浏览器则会触发focus事件 */
-    document.addEventListener('focus', getHash, true);
+  const stopPollingPageUpdate = () => {
+    stop();
+  };
+
+  const handleVisibilitychange = () => {
+    if (document.visibilityState === 'visible') {
+      startPollingPageUpdate();
+    } else {
+      stopPollingPageUpdate();
+    }
+  };
+
+  onMounted(() => {
+    //初始化时，不会触发visibilitychange事件，先主动开启轮询检测
+    startPollingPageUpdate();
+    document.addEventListener('visibilitychange', handleVisibilitychange);
+
+    if (workerRef.value) {
+      //监听worker事件
+      workerRef.value.port.onmessage = (e) => {
+        const data = e.data || {};
+        switch (data.type) {
+          case ReflectMessageType.REFLECT_GET_ETAG:
+            //forbidUpdate防止重复弹出
+            !forbidUpdate.value && handlePageUpdateCheck(data.data);
+            break;
+          default:
+            break;
+        }
+      };
+    }
   });
 
   onBeforeUnmount(() => {
-    clearInterval(timer.value);
+    document.removeEventListener('visibilitychange', handleVisibilitychange);
   });
 };
 
