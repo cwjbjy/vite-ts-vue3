@@ -5,6 +5,7 @@ let intervalId = null;
 // eslint-disable-next-line no-undef
 onconnect = function (e) {
   const port = e.ports[0];
+  port.id = generateUUID();
   // 存储端口
   portList.push(port);
 
@@ -17,10 +18,13 @@ onconnect = function (e) {
     switch (type) {
       case 'init':
         //初始化时，visibilitychange不会触发，需主动添加一条
-        visiblePorts.push(true);
+        visiblePorts.push(port.id);
         break;
       case 'start': //开启轮询
-        visiblePorts.push(true);
+        //防止新开tab页时，同时触发init事件与visible事件，重复添加
+        if (!visiblePorts.find((o) => o === port.id)) {
+          visiblePorts.push(port.id);
+        }
         if (intervalId !== null) {
           clearInterval(intervalId);
         }
@@ -31,10 +35,13 @@ onconnect = function (e) {
               data: etag,
             });
           });
-        }, 3000);
+        }, 30000);
         break;
       case 'stop': //停止轮询
-        visiblePorts.shift();
+        {
+          const visibleIndex = visiblePorts.indexOf(port.id);
+          if (visibleIndex > -1) visiblePorts.splice(visibleIndex, 1);
+        }
         if (intervalId !== null && visiblePorts.length === 0) {
           clearInterval(intervalId);
           intervalId = null;
@@ -69,6 +76,17 @@ function sendMessage(message) {
   portList.forEach((port) => {
     port.postMessage(message);
   });
+}
+
+// 使用函数生成一个UUID
+function generateUUID() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
 
 const getETag = async () => {
