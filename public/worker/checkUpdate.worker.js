@@ -1,6 +1,7 @@
 const portList = []; // 存储端口
 const visiblePorts = []; //存储页面可见情况
 let intervalId = null;
+let etag = ''; //Etag版本
 
 // eslint-disable-next-line no-undef
 onconnect = function (e) {
@@ -21,7 +22,16 @@ onconnect = function (e) {
         visiblePorts.push(port.id);
         break;
       case 'start': //开启轮询
-        //防止新开tab页时，同时触发init事件与visible事件，重复添加
+        //如果etag为空，立即获取一次etag
+        if (!etag) {
+          const data = await getETag();
+          etag = data;
+          sendMessage({
+            type: 'reflectGetEtag',
+            data,
+          });
+        }
+        //防止重复添加
         if (!visiblePorts.find((o) => o === port.id)) {
           visiblePorts.push(port.id);
         }
@@ -29,10 +39,11 @@ onconnect = function (e) {
           clearInterval(intervalId);
         }
         intervalId = setInterval(() => {
-          getETag().then((etag) => {
+          getETag().then((res) => {
+            etag = res;
             sendMessage({
               type: 'reflectGetEtag',
-              data: etag,
+              data: res,
             });
           });
         }, 30000);
@@ -53,15 +64,6 @@ onconnect = function (e) {
           if (index > -1) {
             portList.splice(index, 1);
           }
-        }
-        break;
-      case 'getEtag': //立即获取ETag
-        {
-          const data = await getETag();
-          sendMessage({
-            type: 'reflectGetEtag',
-            data,
-          });
         }
         break;
       default:

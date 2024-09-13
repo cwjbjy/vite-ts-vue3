@@ -5,8 +5,7 @@ import useCheckUpdateWorker, { ReflectMessageType } from '../utils/worker/checkU
 const useCheckUpdate = () => {
   const forbidUpdate = ref(false); //防止弹出多个框
   const versionRef = ref<string>();
-  const firstReqRef = ref(true);
-  const { start, stop, getEtag, workerRef } = useCheckUpdateWorker('/worker/checkUpdate.worker.js', {
+  const { start, stop, workerRef } = useCheckUpdateWorker('/worker/checkUpdate.worker.js', {
     name: 'updateModal',
     type: 'module',
   });
@@ -34,11 +33,6 @@ const useCheckUpdate = () => {
   const startPollingPageUpdate = () => {
     //开发环境不进行版本更新提示
     // if (process.env.NODE_ENV === 'development') return;
-    //第一次立即执行
-    if (firstReqRef.value) {
-      firstReqRef.value = false;
-      getEtag();
-    }
     stopPollingPageUpdate();
     start();
   };

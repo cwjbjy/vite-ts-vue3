@@ -7,7 +7,6 @@ enum MessageType {
   START = 'start', //开启轮询，检测Etag版本
   STOP = 'stop', //停止轮询
   CLOSE = 'close', //关闭或刷新页面时，关闭SharedWorker的端口
-  GET_ETAG = 'getEtag', //立即获取ETag
 }
 
 //SharedWorker接收到MessageType类型事件后，处理后对应的事件返回，以reflect开头
@@ -42,10 +41,6 @@ export default function useSharedWorker(url: string, options: WorkerOptions) {
     sendMessage(MessageType.CLOSE);
   };
 
-  const getEtag = () => {
-    sendMessage(MessageType.GET_ETAG);
-  };
-
   onMounted(() => {
     if (!workerRef.value) {
       workerRef.value = sharedWorkerInstance(url, options);
@@ -62,5 +57,5 @@ export default function useSharedWorker(url: string, options: WorkerOptions) {
     window.removeEventListener('unload', close);
   });
 
-  return { start, stop, init, getEtag, workerRef };
+  return { start, stop, init, workerRef };
 }
