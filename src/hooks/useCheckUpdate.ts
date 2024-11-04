@@ -1,14 +1,35 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-import useCheckUpdateWorker, { ReflectMessageType } from '../utils/worker/checkUpdate/useCheckUpdateWorker';
+import { ElNotification } from 'element-plus';
+
+import useCheckUpdateWorker, { ReflectMessageType } from './useCheckUpdateWorker';
 
 const useCheckUpdate = () => {
   const forbidUpdate = ref(false); //防止弹出多个框
   const versionRef = ref<string>();
-  const { start, stop, workerRef } = useCheckUpdateWorker('/worker/checkUpdate.worker.js', {
-    name: 'updateModal',
-    type: 'module',
-  });
+  const { start, stop, refresh, workerRef } = useCheckUpdateWorker(
+    new URL('../utils/checkUpdate.worker.js', import.meta.url).href,
+    {
+      name: 'updateModal',
+      type: 'module',
+    },
+  );
+
+  const openNotification = () => {
+    forbidUpdate.value = true;
+    //强制更新
+    ElNotification({
+      title: '版本更新提示',
+      message: '检测到系统当前版本已更新，请刷新后使用。',
+      duration: 0,
+      onClose: () => {
+        //通知其他tab页刷新
+        refresh();
+        //刷新页面
+        window.location.reload();
+      },
+    });
+  };
 
   const handlePageUpdateCheck = (etag: string) => {
     if (etag) {
@@ -19,12 +40,8 @@ const useCheckUpdate = () => {
         // eslint-disable-next-line no-console
         console.log('最新版本');
       } else {
-        // 版本更新，弹出提示
-        if (window.confirm('检测到系统当前版本已更新，请刷新浏览器后使用。')) {
-          forbidUpdate.value = false;
-          // 刷新页面
-          window.location.reload();
-        }
+        // 版本更新，弹出提示，forbidUpdate防止重复弹出
+        !forbidUpdate.value && openNotification();
       }
     }
   };
@@ -61,7 +78,11 @@ const useCheckUpdate = () => {
         switch (data.type) {
           case ReflectMessageType.REFLECT_GET_ETAG:
             //forbidUpdate防止重复弹出
-            !forbidUpdate.value && handlePageUpdateCheck(data.data);
+            handlePageUpdateCheck(data.data);
+            break;
+          case ReflectMessageType.REFLECT_REFRESH:
+            //其他tab页面手动更新，同步更新
+            window.location.reload();
             break;
           default:
             break;

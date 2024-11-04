@@ -1,5 +1,5 @@
 <template>
-  <div :class="themeClass">
+  <div v-title="'管理系统'" :class="themeClass">
     <div class="app-container">
       <AppHeader />
       <main class="app-main">

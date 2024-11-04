@@ -1,17 +1,17 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-import { sharedWorkerInstance } from '../sharedWorkerInstance';
 //发送消息的类型
 enum MessageType {
-  INIT = 'init', //初始化，用于传参
   START = 'start', //开启轮询，检测Etag版本
   STOP = 'stop', //停止轮询
   CLOSE = 'close', //关闭或刷新页面时，关闭SharedWorker的端口
+  REFRESH = 'refresh', //主动刷新
 }
 
 //SharedWorker接收到MessageType类型事件后，处理后对应的事件返回，以reflect开头
 export enum ReflectMessageType {
   REFLECT_GET_ETAG = 'reflectGetEtag',
+  REFLECT_REFRESH = 'reflectRefresh',
 }
 
 // 用户消息推送Websocket连接
@@ -23,10 +23,6 @@ export default function useSharedWorker(url: string, options: WorkerOptions) {
       type,
       ...data,
     });
-  };
-
-  const init = () => {
-    sendMessage(MessageType.INIT);
   };
 
   const start = () => {
@@ -41,21 +37,21 @@ export default function useSharedWorker(url: string, options: WorkerOptions) {
     sendMessage(MessageType.CLOSE);
   };
 
+  const refresh = () => {
+    sendMessage(MessageType.REFRESH);
+  };
+
   onMounted(() => {
     if (!workerRef.value) {
-      workerRef.value = sharedWorkerInstance(url, options);
-      init();
+      workerRef.value = new SharedWorker(url, options);
     }
 
-    window.addEventListener('beforeunload', close, false);
-
-    window.addEventListener('unload', close);
+    window.addEventListener('beforeunload', close);
   });
 
   onBeforeUnmount(() => {
     window.removeEventListener('beforeunload', close);
-    window.removeEventListener('unload', close);
   });
 
-  return { start, stop, init, workerRef };
+  return { start, stop, refresh, workerRef };
 }

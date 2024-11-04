@@ -17,16 +17,12 @@ onconnect = function (e) {
     const type = data.type || '';
 
     switch (type) {
-      case 'init':
-        //初始化时，visibilitychange不会触发，需主动添加一条
-        visiblePorts.push(port.id);
-        break;
       case 'start': //开启轮询
         //如果etag为空，立即获取一次etag
         if (!etag) {
           const data = await getETag();
           etag = data;
-          sendMessage({
+          broadcast({
             type: 'reflectGetEtag',
             data,
           });
@@ -41,7 +37,7 @@ onconnect = function (e) {
         intervalId = setInterval(() => {
           getETag().then((res) => {
             etag = res;
-            sendMessage({
+            broadcast({
               type: 'reflectGetEtag',
               data: res,
             });
@@ -53,6 +49,7 @@ onconnect = function (e) {
           const visibleIndex = visiblePorts.indexOf(port.id);
           if (visibleIndex > -1) visiblePorts.splice(visibleIndex, 1);
         }
+        //当所有页面不可见时，才停止轮询
         if (intervalId !== null && visiblePorts.length === 0) {
           clearInterval(intervalId);
           intervalId = null;
@@ -66,15 +63,27 @@ onconnect = function (e) {
           }
         }
         break;
+      case 'refresh': //主动刷新，通知其他页面刷新
+        sendMessage(port, {
+          type: 'reflectRefresh',
+        });
+        break;
       default:
-        sendMessage({ type: 'error', message: 'Unknown message type' });
+        broadcast({ type: 'error', message: 'Unknown message type' });
         break;
     }
   };
 };
 
-// 发送消息
-function sendMessage(message) {
+//给除自己外的窗口发送消息
+function sendMessage(port, message) {
+  portList.forEach((o) => {
+    o.id !== port.id && o.postMessage(message);
+  });
+}
+
+// 给所有窗口发送消息
+function broadcast(message) {
   portList.forEach((port) => {
     port.postMessage(message);
   });
@@ -91,6 +100,7 @@ function generateUUID() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
 
+// 获取当前etag
 const getETag = async () => {
   try {
     const response = await fetch(location.origin, {
