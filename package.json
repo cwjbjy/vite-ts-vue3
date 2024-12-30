@@ -14,7 +14,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "crypto-es": "^2.1.0",
-    "cwj_monitoring": "^0.0.15",
+    "cwj_monitoring": "^0.0.18",
     "dayjs": "^1.11.12",
     "element-plus": "^2.4.1",
     "eslint-plugin-prettier": "^5.1.3",
