@@ -15,7 +15,6 @@ vue3-manage
 vue3-manage.zip
 /src/router/dev.routerConfig.ts
 stats.html
-.env
 
 # Editor directories and files
 !.vscode/extensions.json
