@@ -1412,10 +1412,10 @@ csstype@^3.1.3:
   resolved "https://registry.npmmirror.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
 
-cwj_monitoring@^0.0.18:
-  version "0.0.18"
-  resolved "https://registry.npmmirror.com/cwj_monitoring/-/cwj_monitoring-0.0.18.tgz#59693eb4bb1e43c624be16a5be4f4ae4e0ce3e09"
-  integrity sha512-TncfqnKxHTPPWmvvRvv40QgIkK1CDq9MyPnXpzrCZUyi2OKnJ4WkxHHtBUsoJsoCM7+b4l0PArkygO6k1ac7xA==
+cwj_monitoring@^0.0.20:
+  version "0.0.20"
+  resolved "https://registry.npmmirror.com/cwj_monitoring/-/cwj_monitoring-0.0.20.tgz#350a034862868d5bcabf63d91fa0955531ae6225"
+  integrity sha512-rsaGrzJ/Sqmzom3t6FuZRVvlHzlSU407koQHufGClv67gKn3M1vagwnLEtYg2+112ddGCkqLlqWrvIYXUx1YcQ==
   dependencies:
     bowser "^2.11.0"
     uuid "^9.0.0"
