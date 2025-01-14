@@ -1,0 +1,41 @@
+name: Build app and deploy to aliyun
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 获取源码
+      - name: 获取源码
+        uses: actions/checkout@v4
+      # 安装node
+      - name: 安装node.js
+        uses: actions/setup-node@v4
+        with:
+          #指定node的版本
+          node-version: 18
+          cache: 'npm'
+      # 安装依赖
+      - name: Install npm dependencies
+        run: npm install
+      # 打包
+      - name: Run build task
+        run: npm run build --if-present
+      # 检查rsync版本
+      - name: Check rsync installation
+        run: |
+          which rsync || echo "Rsync is not in PATH"
+          rsync --version
+      # 上传打包文件到远程服务器
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v5.0.3
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }} #SSH私钥
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "dist/" # 这是要复制到阿里云静态服务器的文件夹名称
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }} # 你的阿里云公网地址
+          REMOTE_USER: "root" # 阿里云登录后默认为 root 用户
+          TARGET: "/static/vue3-manage" # 打包后的 dist 文件夹将放在 /static
+          EXCLUDE: "/dist/, /node_modules/"

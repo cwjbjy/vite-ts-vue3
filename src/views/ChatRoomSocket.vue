@@ -6,7 +6,7 @@
           <el-button type="primary" :disabled="connectFlag" @click="connect">连接</el-button>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" :disabled="closeFlag" @click="close">关闭</el-button>
+          <el-button type="primary" :disabled="!connectFlag" @click="close">关闭</el-button>
         </el-form-item>
         <el-form-item label>
           <el-button type="primary" @click="explainDialog = true">使用说明</el-button>
@@ -77,28 +77,17 @@ const userStore = useUserStore();
 const { userName, imageUrl } = storeToRefs(userStore);
 const msg = ref('');
 const connectFlag = ref(false);
-const closeFlag = ref(true);
 const dialogVisible = ref(false);
 const explainDialog = ref(false);
 const historyInfos = ref<ChatInfo[]>([]);
 const infoListContent = ref<HTMLDivElement | null>(null);
-const firstConnect = ref(true);
 
 const connect = () => {
-  if (firstConnect.value) {
-    socket.connect({
-      name: userName.value,
-      image: imageUrl.value,
-    });
-  } else {
-    socket.reconnect({
-      name: userName.value,
-      image: imageUrl.value,
-    });
-  }
+  socket.connect({
+    name: userName.value,
+    image: imageUrl.value,
+  });
   connectFlag.value = true;
-  closeFlag.value = false;
-  firstConnect.value = false;
 };
 
 const close = () => {
@@ -106,7 +95,6 @@ const close = () => {
   socket.close();
   historyInfos.value = [];
   connectFlag.value = false;
-  closeFlag.value = true;
 };
 
 const send = () => {
