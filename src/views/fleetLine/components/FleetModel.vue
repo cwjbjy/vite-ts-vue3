@@ -9,6 +9,7 @@ import { storeToRefs } from 'pinia';
 
 import type { AirLine, Item } from '../airLine';
 
+import geoJson from '@/assets/map/china.json';
 import { useThemeStore } from '@/store/themeColor';
 
 const props = defineProps<{ model: AirLine }>();
@@ -19,9 +20,9 @@ const echartRef = ref(null);
 
 const buildLines = (data: Item[], geoCoordMap: Record<any, number[]>) => {
   if (!data) return [];
-  var planePath =
+  const planePath =
     'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
-  var color = [
+  const color = [
     '#eccc68',
     '#ff7f50',
     '#ff6b81',
@@ -76,7 +77,8 @@ const prepareDomain = (model: AirLine) => {
     echartsInstance = window.echarts.init(echartRef.value);
   }
   echartsInstance.clear();
-  var geoCoordMap = model.geoCoordMap;
+  window.echarts.registerMap('china', { geoJSON: geoJson });
+  const geoCoordMap = model.geoCoordMap;
 
   /*
       delay：动画推迟时间
@@ -84,14 +86,14 @@ const prepareDomain = (model: AirLine) => {
       speed：飞机的飞行速度，动画时间
       */
 
-  var apiData = model.apiData;
+  const apiData = model.apiData;
 
-  var convertData = function (data: Item[]) {
+  const convertData = function (data: Item[]) {
     if (!data) return [];
-    var res = [];
+    const res = [];
     for (let i = 0, len = data.length; i < len; i++) {
-      var geoCoord = geoCoordMap[data[i].fromName];
-      var geoCoord2 = geoCoordMap[data[i].toName];
+      const geoCoord = geoCoordMap[data[i].fromName];
+      const geoCoord2 = geoCoordMap[data[i].toName];
 
       if (geoCoord) {
         res.push({
@@ -106,7 +108,7 @@ const prepareDomain = (model: AirLine) => {
     }
     return res;
   };
-  var option = {
+  const option = {
     backgroundColor: fleetBg.value,
     title: {
       text: '模拟航线',
