@@ -1,7 +1,7 @@
 /* 聊天信息 */
 export interface ChatInfo {
   name: string;
-  image: string;
+  image?: string;
   text: string;
 }
 

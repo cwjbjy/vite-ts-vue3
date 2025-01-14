@@ -23,6 +23,8 @@ const PDFPreview = () => import('@/views/PDFPreview.vue');
 
 const I18n = () => import('@/views/I18n/I18nPage.vue');
 
+const Openai = () => import('@/views/AI.vue');
+
 const ChatRoomSocket = () => import('@/views/ChatRoomSocket.vue');
 
 const UserManage = () => import('@/views/UserManage.vue');
@@ -98,6 +100,13 @@ const routes = [
           title: '聊天室',
         },
         component: ChatRoomSocket,
+      },
+      {
+        path: path.OPENAI,
+        meta: {
+          title: '智能对话',
+        },
+        component: Openai,
       },
       ...chartRoutes,
       ...dragRoutes,

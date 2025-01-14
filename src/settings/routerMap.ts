@@ -36,6 +36,8 @@ export const FLOD_CHART = '/foldChart';
 export const MAGNIFYING = '/magnifying';
 /** 聊天室 */
 export const CHARTROOM = '/chatRoom';
+/** 智能对话 */
+export const OPENAI = '/openai';
 /** 后台管理 */
 export const MANAGE = '/manage';
 
@@ -76,6 +78,8 @@ export const KEY_FLOD_CHART = getKey(FLOD_CHART);
 export const KEY_MAGNIFYING = getKey(MAGNIFYING);
 
 export const KEY_CHARTROOM = getKey(CHARTROOM);
+
+export const KEY_OPENAI = getKey(OPENAI);
 
 export const KEY_MANAGE = getKey(MANAGE);
 

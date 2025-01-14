@@ -92,6 +92,12 @@ export const menus = [
     icon: getAssetsFile('menus/magnifying.png'),
   },
   {
+    name: '智能对话',
+    path: path.OPENAI,
+    key: path.KEY_OPENAI,
+    icon: getAssetsFile('menus/robot.png'),
+  },
+  {
     name: '聊天室',
     path: path.CHARTROOM,
     key: path.KEY_CHARTROOM,
