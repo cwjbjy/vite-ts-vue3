@@ -1,5 +1,6 @@
 name: Build app and deploy to aliyun
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
