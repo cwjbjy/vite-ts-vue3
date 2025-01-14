@@ -143,7 +143,7 @@ const cancel = () => {
 };
 
 const keyDown = (e: KeyboardEvent) => {
-  let key = e.key;
+  const key = e.key;
   if (key === 'Enter') {
     send();
   }

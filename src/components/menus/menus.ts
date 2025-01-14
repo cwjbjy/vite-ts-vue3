@@ -95,7 +95,7 @@ export const menus = [
     name: '智能对话',
     path: path.OPENAI,
     key: path.KEY_OPENAI,
-    icon: getAssetsFile('menus/robot.png'),
+    icon: getAssetsFile('menus/ai.png'),
   },
   {
     name: '聊天室',
