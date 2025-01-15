@@ -41,7 +41,12 @@ import { ref, onActivated, nextTick, onDeactivated } from 'vue';
 
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 import { ElMessage } from 'element-plus';
-import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/core';
+import java from 'highlight.js/lib/languages/java';
+import javascript from 'highlight.js/lib/languages/javascript';
+import json from 'highlight.js/lib/languages/json';
+import python from 'highlight.js/lib/languages/python';
+import html from 'highlight.js/lib/languages/vbscript-html';
 import { isEmpty } from 'lodash-es';
 import markdownit from 'markdown-it';
 import { storeToRefs } from 'pinia';
@@ -49,6 +54,14 @@ import { storeToRefs } from 'pinia';
 import type { ChatInfo } from '#/config';
 
 import { useUserStore } from '@/store/user';
+
+import 'highlight.js/styles/stackoverflow-light.css';
+
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('java', java);
+hljs.registerLanguage('json', json);
+hljs.registerLanguage('html', html);
+hljs.registerLanguage('python', python);
 
 const userStore = useUserStore();
 const { userName, imageUrl } = storeToRefs(userStore);
@@ -191,7 +204,6 @@ onDeactivated(() => {
     padding: 5px 12px;
     color: #141414;
     line-height: 20px;
-    background-color: #a8a29e1a;
   }
   .info-right {
     text-align: right;

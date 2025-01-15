@@ -62,4 +62,8 @@ watch(route, async (newVal) => {
 .fade-leave-active {
   opacity: 0;
 }
+pre {
+  background-color: #a8a29e1a;
+  padding: 6px 12px;
+}
 </style>
