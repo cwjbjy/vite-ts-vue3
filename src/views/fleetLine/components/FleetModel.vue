@@ -223,9 +223,9 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   //销毁实例，释放内存
-  let echartsInstance = window.echarts.getInstanceByDom(echartRef.value);
+  let echartsInstance = echarts.getInstanceByDom(echartRef.value);
   if (echartsInstance) {
-    window.echarts.dispose(echartsInstance);
+    echarts.dispose(echartsInstance);
   }
 });
 </script>
