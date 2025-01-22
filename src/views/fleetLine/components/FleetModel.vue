@@ -15,8 +15,8 @@ import { storeToRefs } from 'pinia';
 import type { AirLine, Item } from '../airLine';
 
 import geoJson from '@/assets/map/china.json';
+import useResize from '@/hooks/useResize';
 import { useThemeStore } from '@/store/themeColor';
-
 echarts.use([
   TooltipComponent,
   TitleComponent,
@@ -208,10 +208,9 @@ const prepareDomain = (model: AirLine) => {
     ],
   };
   echartsInstance.setOption(option);
-  window.onresize = function () {
-    echartsInstance.resize();
-  };
 };
+
+useResize(echartRef);
 
 watch(echartColor, () => {
   prepareDomain(props.model);
