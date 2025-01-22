@@ -73,6 +73,7 @@ export default () => {
           manualChunks: {
             vue: ['vue', 'pinia', 'vue-router'],
             elementIcons: ['@element-plus/icons-vue'],
+            echarts: ['echarts'],
           },
         },
       },

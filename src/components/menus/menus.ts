@@ -40,12 +40,6 @@ export const menus = [
     icon: getAssetsFile('menus/pdf.png'),
   },
   {
-    name: '基础图表',
-    path: path.BASE_TABLE,
-    key: path.KEY_BASE_TABLE,
-    icon: getAssetsFile('menus/echarts.png'),
-  },
-  {
     name: '拖拽组件',
     key: path.KEY_DRAG,
     icon: getAssetsFile('menus/drag.png'),
@@ -95,7 +89,7 @@ export const menus = [
     name: '智能对话',
     path: path.OPENAI,
     key: path.KEY_OPENAI,
-    icon: getAssetsFile('menus/chat.png'),
+    icon: getAssetsFile('menus/echarts.png'),
   },
   {
     name: '聊天室',

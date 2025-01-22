@@ -5,6 +5,11 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref, watch, onMounted } from 'vue';
 
+import { ScatterChart, EffectScatterChart, LinesChart } from 'echarts/charts';
+import { TitleComponent, TooltipComponent, GeoComponent } from 'echarts/components';
+import * as echarts from 'echarts/core';
+import { UniversalTransition } from 'echarts/features';
+import { CanvasRenderer } from 'echarts/renderers';
 import { storeToRefs } from 'pinia';
 
 import type { AirLine, Item } from '../airLine';
@@ -12,11 +17,22 @@ import type { AirLine, Item } from '../airLine';
 import geoJson from '@/assets/map/china.json';
 import { useThemeStore } from '@/store/themeColor';
 
+echarts.use([
+  TooltipComponent,
+  TitleComponent,
+  GeoComponent,
+  CanvasRenderer,
+  ScatterChart,
+  EffectScatterChart,
+  LinesChart,
+  UniversalTransition,
+]);
+
 const props = defineProps<{ model: AirLine }>();
 
 const themeStore = useThemeStore();
 const { echartColor, fleetBg } = storeToRefs(themeStore);
-const echartRef = ref(null);
+const echartRef = ref();
 
 const buildLines = (data: Item[], geoCoordMap: Record<any, number[]>) => {
   if (!data) return [];
@@ -54,12 +70,10 @@ const buildLines = (data: Item[], geoCoordMap: Record<any, number[]>) => {
       delay: item.delay,
     },
     lineStyle: {
-      normal: {
-        color: color[index],
-        width: 2,
-        opacity: 0.5,
-        curveness: 0.2, //曲度
-      },
+      color: color[index],
+      width: 2,
+      opacity: 0.5,
+      curveness: 0.2, //曲度
     },
     data: [
       {
@@ -72,12 +86,13 @@ const buildLines = (data: Item[], geoCoordMap: Record<any, number[]>) => {
   }));
 };
 const prepareDomain = (model: AirLine) => {
-  let echartsInstance = window.echarts.getInstanceByDom(echartRef.value);
+  let echartsInstance = echarts.getInstanceByDom(echartRef.value);
   if (!echartsInstance) {
-    echartsInstance = window.echarts.init(echartRef.value);
+    echartsInstance = echarts.init(echartRef.value);
   }
   echartsInstance.clear();
-  window.echarts.registerMap('china', { geoJSON: geoJson });
+  //@ts-ignore
+  echarts.registerMap('china', { geoJSON: geoJson });
   const geoCoordMap = model.geoCoordMap;
 
   /*
@@ -123,24 +138,21 @@ const prepareDomain = (model: AirLine) => {
     geo: {
       map: 'china',
       layoutSize: '128%',
-      // layoutCenter:["39%","50%"],
       zoom: 1,
-      label: {
-        emphasis: {
+      emphasis: {
+        label: {
           show: false,
           color: '#fff',
+        },
+        itemStyle: {
+          areaColor: '#4499d0',
         },
       },
       roam: true, //平移缩放
       itemStyle: {
-        normal: {
-          areaColor: '#0045A0',
-          borderColor: '#00DFFF',
-          borderWidth: 2,
-        },
-        emphasis: {
-          areaColor: '#4499d0',
-        },
+        areaColor: '#0045A0',
+        borderColor: '#00DFFF',
+        borderWidth: 2,
       },
     },
     series: [
@@ -150,16 +162,12 @@ const prepareDomain = (model: AirLine) => {
         coordinateSystem: 'geo',
         zlevel: 1,
         label: {
-          normal: {
-            show: true,
-            position: 'right',
-            formatter: '{b}',
-          },
+          show: true,
+          position: 'right',
+          formatter: '{b}',
         },
         itemStyle: {
-          normal: {
-            color: '#fff',
-          },
+          color: '#fff',
         },
         //coordinateSystem:"geo"只会取数组的前两位当做点坐标数据
         data: convertData(apiData),
@@ -176,23 +184,20 @@ const prepareDomain = (model: AirLine) => {
           brushType: 'stroke',
         },
         label: {
-          normal: {
-            show: false,
-            position: 'left',
-            formatter: '{b}',
-          },
+          show: false,
+          position: 'left',
+          formatter: '{b}',
         },
         itemStyle: {
-          normal: {
-            color: 'rgba(102,204,255,0.9)',
-            shadowBlur: 10,
-            shadowColor: '#0ff7ee',
-          },
-          emphasis: {
+          color: 'rgba(102,204,255,0.9)',
+          shadowBlur: 10,
+          shadowColor: '#0ff7ee',
+        },
+        emphasis: {
+          itemStyle: {
             areaColor: '#2B91B7',
           },
         },
-        hoverAnimation: true,
         showEffectOn: 'render', //绘制完成后显示特效
         data: convertData(apiData),
         symbolSize: function (value: any) {

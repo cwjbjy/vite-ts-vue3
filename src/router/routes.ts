@@ -13,8 +13,6 @@ const HomePage = () => import('@/views/homePage/HomePage.vue');
 
 const FleetLine = () => import('@/views/fleetLine/FleetLine.vue');
 
-const BaseEcharts = () => import('@/views/baseEcharts/BaseEcharts.vue');
-
 const Magnifying = () => import('@/views/Magnifying.vue');
 
 const FileUp = () => import('@/views/FileUpload.vue');
@@ -72,13 +70,6 @@ const routes = [
           title: '文件预览',
         },
         component: PDFPreview,
-      },
-      {
-        path: path.BASE_TABLE,
-        meta: {
-          title: '基础图表',
-        },
-        component: BaseEcharts,
       },
       {
         path: path.I18N,

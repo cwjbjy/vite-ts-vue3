@@ -5,11 +5,18 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
 
+import { BarChart, LineChart } from 'echarts/charts';
+import { GridComponent, TooltipComponent, TitleComponent, LegendComponent } from 'echarts/components';
+import * as echarts from 'echarts/core';
+import { CanvasRenderer } from 'echarts/renderers';
 import { storeToRefs } from 'pinia';
 
 import useResize from '@/hooks/useResize';
 import * as base from '@/settings/echartsConfig';
 import { useThemeStore } from '@/store/themeColor';
+
+// 注册必须的组件
+echarts.use([GridComponent, TooltipComponent, TitleComponent, LegendComponent, LineChart, BarChart, CanvasRenderer]);
 
 defineProps({
   model: {
@@ -18,15 +25,15 @@ defineProps({
   },
 });
 
-const echartRef = ref(null);
+const echartRef = ref();
 const themeStore = useThemeStore();
 const { echartColor } = storeToRefs(themeStore);
 
 useResize(echartRef);
 const prepareDomain = () => {
-  let echartsInstance = window.echarts.getInstanceByDom(echartRef.value);
+  let echartsInstance = echarts.getInstanceByDom(echartRef.value);
   if (!echartsInstance) {
-    echartsInstance = window.echarts.init(echartRef.value);
+    echartsInstance = echarts.init(echartRef.value);
   }
   echartsInstance.clear();
   let option = {
@@ -154,26 +161,24 @@ const prepareDomain = () => {
         //柱状图柱形的线性渐变
 
         itemStyle: {
-          normal: {
-            color: {
-              type: 'linear',
-              x: 0,
-              y: 0,
-              x2: 0,
-              y2: 1,
-              colorStops: [
-                {
-                  offset: 0, // 0% 处的颜色
-                  color: '#5352ed',
-                },
-                {
-                  offset: 1, // 100% 处的颜色
-                  color: '#3742fa',
-                },
-              ],
-            },
-            barBorderRadius: 20,
+          color: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              {
+                offset: 0, // 0% 处的颜色
+                color: '#5352ed',
+              },
+              {
+                offset: 1, // 100% 处的颜色
+                color: '#3742fa',
+              },
+            ],
           },
+          borderRadius: 20,
         },
         data: [4.2, 3.8, 4.8, 3.5, 2.9, 2.8, 3, 5],
       },

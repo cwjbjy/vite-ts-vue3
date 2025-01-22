@@ -1,12 +1,15 @@
 import { onMounted, onBeforeUnmount, nextTick, Ref } from 'vue';
 
+import * as echarts from 'echarts/core';
 import { debounce } from 'lodash-es';
 
-const useResize = (echartRef: Ref<HTMLDivElement | null>) => {
+const useResize = (echartRef: Ref<HTMLDivElement | undefined>) => {
   const debounceAutoSize = debounce(() => {
     nextTick(() => {
-      const echartsInstance = window.echarts.getInstanceByDom(echartRef.value);
-      echartsInstance.resize();
+      if (echartRef.value) {
+        const echartsInstance = echarts.getInstanceByDom(echartRef.value);
+        echartsInstance?.resize();
+      }
     });
   }, 300);
 

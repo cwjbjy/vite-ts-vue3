@@ -13,12 +13,12 @@
       </el-col>
     </el-row>
     <el-row style="margin-bottom: 20px">
-      <el-col :span="12" class="echarts-box">
+      <el-col :span="12" class="content">
         <el-card shadow="hover">
           <BarLineModel />
         </el-card>
       </el-col>
-      <el-col :span="12" class="echarts-box">
+      <el-col :span="12" class="content">
         <el-card shadow="hover">
           <RadarModel />
         </el-card>
@@ -39,7 +39,7 @@ import UserInfo from './components/UserInfo.vue';
 <style scoped lang="scss">
 .firstItem {
   padding: 10px 0 0 10px;
-  .echarts-box {
+  .content {
     padding: 0 10px;
   }
 }
