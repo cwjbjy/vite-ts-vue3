@@ -15,7 +15,7 @@
     "@element-plus/icons-vue": "^2.1.0",
     "@microsoft/fetch-event-source": "^2.0.1",
     "crypto-es": "^2.1.0",
-    "cwj_monitoring": "^0.0.20",
+    "cwj_monitoring": "^0.0.23",
     "dayjs": "^1.11.12",
     "echarts": "^5.6.0",
     "element-plus": "^2.4.1",

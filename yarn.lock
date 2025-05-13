@@ -364,6 +364,13 @@
   resolved "https://registry.npmmirror.com/@eslint/js/-/js-8.56.0.tgz#ef20350fec605a7f7035a01764731b2de0f3782b"
   integrity sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==
 
+"@fingerprintjs/fingerprintjs@^4.6.2":
+  version "4.6.2"
+  resolved "https://registry.npmmirror.com/@fingerprintjs/fingerprintjs/-/fingerprintjs-4.6.2.tgz#50ba7b82dc8e8d9a9d50db55447142e798afe2db"
+  integrity sha512-g8mXuqcFKbgH2CZKwPfVtsUJDHyvcgIABQI7Y0tzWEFXpGxJaXuAuzlifT2oTakjDBLTK4Gaa9/5PERDhqUjtw==
+  dependencies:
+    tslib "^2.4.1"
+
 "@floating-ui/core@^1.5.3":
   version "1.5.3"
   resolved "https://registry.npmmirror.com/@floating-ui/core/-/core-1.5.3.tgz#b6aa0827708d70971c8679a16cf680a515b8a52a"
@@ -1412,13 +1419,13 @@ csstype@^3.1.3:
   resolved "https://registry.npmmirror.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
 
-cwj_monitoring@^0.0.20:
-  version "0.0.20"
-  resolved "https://registry.npmmirror.com/cwj_monitoring/-/cwj_monitoring-0.0.20.tgz#350a034862868d5bcabf63d91fa0955531ae6225"
-  integrity sha512-rsaGrzJ/Sqmzom3t6FuZRVvlHzlSU407koQHufGClv67gKn3M1vagwnLEtYg2+112ddGCkqLlqWrvIYXUx1YcQ==
+cwj_monitoring@^0.0.23:
+  version "0.0.23"
+  resolved "https://registry.npmmirror.com/cwj_monitoring/-/cwj_monitoring-0.0.23.tgz#64624c09fa69285162ee93dcf096444e5789e6c9"
+  integrity sha512-bHnBNGNMwszHpYhG6Dv2UlU72BffdnvYH/vnVW2TGHTwm47qSTNXcZQF8UleQ2sEk5gsKZcxuqdrqssxl5rzsQ==
   dependencies:
+    "@fingerprintjs/fingerprintjs" "^4.6.2"
     bowser "^2.11.0"
-    uuid "^9.0.0"
 
 dargs@^7.0.0:
   version "7.0.0"
@@ -4009,6 +4016,11 @@ tslib@^2.1.0, tslib@^2.6.2:
   resolved "https://registry.npmmirror.com/tslib/-/tslib-2.6.2.tgz#703ac29425e7b37cd6fd456e92404d46d1f3e4ae"
   integrity sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==
 
+tslib@^2.4.1:
+  version "2.8.1"
+  resolved "https://registry.npmmirror.com/tslib/-/tslib-2.8.1.tgz#612efe4ed235d567e8aba5f2a5fab70280ade83f"
+  integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
+
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
   resolved "https://registry.npmmirror.com/type-check/-/type-check-0.4.0.tgz#07b8203bfa7056c0657050e3ccd2c37730bab8f1"
@@ -4189,11 +4201,6 @@ util-deprecate@^1.0.1, util-deprecate@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmmirror.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
-
-uuid@^9.0.0:
-  version "9.0.1"
-  resolved "https://registry.npmmirror.com/uuid/-/uuid-9.0.1.tgz#e188d4c8853cc722220392c424cd637f32293f30"
-  integrity sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==
 
 v8-compile-cache-lib@^3.0.1:
   version "3.0.1"

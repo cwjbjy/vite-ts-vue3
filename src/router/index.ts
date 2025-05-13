@@ -17,8 +17,6 @@ NProgress.configure({ showSpinner: false });
 
 router.beforeEach((to) => {
   NProgress.start();
-  /* 手动上报 */
-  window.$track.emit('historychange');
   if (to.path === LOGIN) {
     localStorage.removeItem(TOKEN);
     localStorage.removeItem(MENUS);

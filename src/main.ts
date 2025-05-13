@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
-import { init } from 'cwj_monitoring';
+import { init, TYPES } from 'cwj_monitoring';
 
 import App from './App.vue';
 import myDirective from './directive';
@@ -17,6 +17,7 @@ import './assets/icon/iconfont.css';
 //自己的npm包，数据埋点
 init({
   url: `${import.meta.env.VITE_APP_BASEURL}/track`,
+  plugin: [TYPES.ERROR, TYPES.ROUTER], // 启用错误监控,路由监控
   data: {
     vs: 'vue3-manage',
   },
