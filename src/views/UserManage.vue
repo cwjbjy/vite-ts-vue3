@@ -33,8 +33,10 @@
           <el-table-column label="注册时间" prop="createTime" align="center"></el-table-column>
           <el-table-column align="center" label="操作">
             <template #default="scope">
-              <span v-if="scope.row.authority == 1" class="btn" @click="handleEdit(scope.row)">编辑</span>
-              <span v-if="scope.row.authority != 1" class="red btn" @click="handleDelete(scope.row.id)">删除</span>
+              <div v-if="scope.row.authority !== 1">
+                <span class="btn" @click="handleEdit(scope.row)">编辑</span>
+                <span class="red btn" @click="handleDelete(scope.row.id)">删除</span>
+              </div>
             </template>
           </el-table-column>
         </el-table>
@@ -146,6 +148,7 @@ onActivated(() => {
 }
 .btn {
   cursor: pointer;
+  margin-right: 4px;
 }
 .blue {
   color: blue;
